@@ -11,7 +11,7 @@
     <!-- GSAP for smooth scroll triggers -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-    <!-- Google Fonts: Inter for Apple-style typography, Space Mono for specs -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -27,7 +27,6 @@
     </script>
 
     <style>
-        /* Apple-style Base */
         body {
             background-color: #000000;
             color: #f5f5f7;
@@ -39,7 +38,6 @@
 
         .font-mono { font-family: 'Space Mono', monospace; }
 
-        /* 3D Canvas Container */
         #canvas-container {
             position: fixed;
             top: 0;
@@ -49,7 +47,6 @@
             z-index: 0;
         }
 
-        /* Scrollytelling Sections */
         .scroll-container {
             position: relative;
             z-index: 10;
@@ -65,18 +62,16 @@
             position: relative;
         }
 
-        /* Glassmorphism UI */
         .glass-panel {
             pointer-events: auto;
-            background: rgba(20, 20, 20, 0.5);
+            background: rgba(15, 15, 18, 0.6);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 24px;
             transition: transform 0.4s ease, border-color 0.4s ease;
         }
 
-        /* Blueprint styling for CAD section */
         .blueprint-card {
             background-color: #0a192f;
             background-image: linear-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px),
@@ -88,12 +83,11 @@
             overflow: hidden;
         }
 
-        /* Text Gradients */
         .text-gradient {
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-image: linear-gradient(180deg, #fff, #666);
+            background-image: linear-gradient(180deg, #ffffff, #666666);
         }
         
         .text-gradient-blue {
@@ -103,7 +97,6 @@
             background-image: linear-gradient(90deg, #2997ff, #8a2be2);
         }
 
-        /* Loading Screen */
         #loading-screen {
             position: fixed;
             inset: 0;
@@ -131,11 +124,8 @@
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #555; }
         
-        @media (max-width: 768px) {
-            .section { padding: 2rem; }
-        }
+        @media (max-width: 768px) { .section { padding: 2rem; } }
 
-        /* Nav Tab Active State */
         .nav-tab.active {
             color: #fff;
             border-bottom: 2px solid #2997ff;
@@ -151,12 +141,12 @@
         <div class="text-xs text-gray-500 tracking-widest uppercase font-mono mb-4">UAV Systems Integration</div>
         <div id="loading-progress" class="text-[#2997ff] text-sm font-medium">Loading CAD Assembly... 0%</div>
         <div id="loading-error" class="text-red-500 text-xs mt-4 max-w-sm text-center hidden">
-            File "FullDroneAssemblySura.glb" not found. <br><br> Make sure you are hosting this on GitHub Pages and that the .glb file is uploaded to the exact same repository folder as this index.html file.
+            File "FullDroneAssemblySura.glb" not found. <br><br> Please ensure you are hosting this on GitHub Pages (or a local server) and that the .glb file is uploaded to the exact same folder as this index.html file.
         </div>
     </div>
 
     <!-- Fixed Header Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-6 bg-black/50 backdrop-blur-md border-b border-white/10">
+    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-6 bg-black/40 backdrop-blur-md border-b border-white/10">
         <div class="text-xl font-bold tracking-widest text-white cursor-pointer" onclick="switchTab('projects')">DS.</div>
         <div class="flex gap-8 text-xs font-semibold tracking-widest text-gray-400 uppercase">
             <button id="tab-projects" class="nav-tab active pb-1 hover:text-white transition-colors" onclick="switchTab('projects')">Engineering Projects</button>
@@ -185,23 +175,23 @@
                         Autonomous Payload Retrieval & Delivery Drone.
                     </p>
                     <div class="text-xs text-gray-500 tracking-widest uppercase mt-12 animate-pulse">
-                        Scroll to Explore
+                        Scroll to Explore ↓
                     </div>
                 </div>
             </div>
 
-            <!-- Phase 1: Project Overview (Pinned Center) -->
+            <!-- Phase 1: Project Overview -->
             <div class="section items-start md:pl-24">
                 <div class="glass-panel p-10 max-w-md mt-32 text-left">
                     <h2 class="text-3xl font-bold text-white mb-2">Project Overview.</h2>
                     <h3 class="text-xl text-gradient-blue font-semibold mb-6">C-UASC Compliant</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    <p class="text-gray-400 text-sm leading-relaxed mb-0">
                         Engineered a custom, lightweight autonomous drone frame applying rigorous First Principles analysis to ensure strict compliance with C-UASC weight and volumetric constraints.
                     </p>
                 </div>
             </div>
 
-            <!-- Phase 2: Avionics Zoom (Top Angle) -->
+            <!-- Phase 2: Avionics Zoom -->
             <div class="section items-end md:pr-24">
                 <div class="glass-panel p-10 max-w-md mt-32 text-left">
                     <h2 class="text-3xl font-bold text-white mb-2">The Brains.</h2>
@@ -217,7 +207,7 @@
                 </div>
             </div>
 
-            <!-- Phase 3: Propulsion Zoom (Propeller) -->
+            <!-- Phase 3: Propulsion Zoom -->
             <div class="section items-start md:pl-24">
                 <div class="glass-panel p-10 max-w-md text-left">
                     <h2 class="text-3xl font-bold text-white mb-2">Pure Thrust.</h2>
@@ -238,23 +228,23 @@
                 </div>
             </div>
 
-            <!-- Phase 4: Frame Zoom (Full Isometric) -->
+            <!-- Phase 4: Frame Zoom -->
             <div class="section items-end md:pr-24">
                 <div class="glass-panel p-10 max-w-md text-left">
                     <h2 class="text-3xl font-bold text-white mb-2">Structural Integrity.</h2>
                     <h3 class="text-xl text-gradient-blue font-semibold mb-6">Carbon Fiber Architecture</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    <p class="text-gray-400 text-sm leading-relaxed mb-0">
                         Leveraged CAD and First Principles analysis to navigate complex mechanical constraints. Carbon fiber tubes and CNC-milled plates were selected for their exceptional strength-to-weight ratio.
                     </p>
                 </div>
             </div>
 
-            <!-- Phase 5: Claw Zoom (Bottom Angle) -->
+            <!-- Phase 5: Claw Zoom -->
             <div class="section items-start md:pl-24">
                 <div class="glass-panel p-10 max-w-md text-left">
                     <h2 class="text-3xl font-bold text-white mb-2">Payload Retrieval.</h2>
                     <h3 class="text-xl text-gradient-blue font-semibold mb-6">Actuated End-Effector</h3>
-                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    <p class="text-gray-400 text-sm leading-relaxed mb-0">
                         Designed a reliable, lightweight end-effector mechanism (claw) enabling the UAV to autonomously secure, transport, and accurately release designated payloads during mission operations.
                     </p>
                 </div>
@@ -271,7 +261,7 @@
             </div>
 
             <!-- Phase 7: Engineering Gallery & Footer -->
-            <div class="min-h-screen bg-[#050505]/90 relative z-20 py-32 pointer-events-auto backdrop-blur-md border-t border-gray-900">
+            <div class="min-h-screen bg-[#050505]/90 relative z-20 py-32 pointer-events-auto backdrop-blur-xl border-t border-gray-900">
                 <div class="max-w-6xl mx-auto px-8">
                     
                     <div class="text-center mb-20">
@@ -371,8 +361,9 @@
                 <!-- Left Column: Picture & Contact -->
                 <div class="md:col-span-1">
                     
-                    <!-- PROFILE PICTURE UPLOAD INSTRUCTIONS -->
+                    <!-- PROFILE PICTURE -->
                     <div class="w-full aspect-[4/5] rounded-2xl border border-gray-800 bg-gradient-to-b from-gray-900 to-black overflow-hidden flex flex-col items-center justify-center mb-8 relative group">
+                        
                         <!-- Upload profile.jpg to your github folder to make it display here -->
                         <img src="./profile.jpg" alt="David Sura" class="w-full h-full object-cover z-10 relative fallback-hide" onerror="this.style.display='none'">
                         
@@ -395,7 +386,6 @@
                         </ul>
 
                         <div class="mt-8 border-t border-gray-800 pt-6">
-                            <!-- Download Resume Button -->
                             <a href="./DavidSura2026resume.pdf" download="DavidSura2026resume.pdf" class="block w-full text-center bg-[#2997ff] text-white font-semibold px-4 py-3 rounded-xl hover:bg-blue-600 transition-colors text-sm">
                                 Download PDF Resume
                             </a>
@@ -536,35 +526,41 @@
         // 2. PROCEDURAL TEXTURES & DEEP SPACE
         // ==========================================
         
-        // Function to create beautiful glowing circular particles instead of square boxes
-        function createParticleTexture() {
+        // Function to create glowing circular particles without external image files
+        function createCircleTexture() {
             const canvas = document.createElement('canvas');
-            canvas.width = 32;
-            canvas.height = 32;
-            const context = canvas.getContext('2d');
-            const gradient = context.createRadialGradient(16, 16, 0, 16, 16, 16);
-            gradient.addColorStop(0, 'rgba(255,255,255,1)');
-            gradient.addColorStop(0.2, 'rgba(255,255,255,0.8)');
-            gradient.addColorStop(1, 'rgba(255,255,255,0)');
-            context.fillStyle = gradient;
-            context.fillRect(0, 0, 32, 32);
+            canvas.width = 64;
+            canvas.height = 64;
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, 64, 64);
+            const grad = ctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+            grad.addColorStop(0, 'rgba(255, 255, 255, 1)');
+            grad.addColorStop(0.2, 'rgba(255, 255, 255, 0.8)');
+            grad.addColorStop(0.8, 'rgba(255, 255, 255, 0.1)');
+            grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.arc(32, 32, 32, 0, Math.PI * 2);
+            ctx.fill();
             return new THREE.CanvasTexture(canvas);
         }
         
-        const particleTex = createParticleTexture();
+        const particleTex = createCircleTexture();
 
         // Starfield (Glowing Orbs)
         const starsGeo = new THREE.BufferGeometry();
         const posArray = new Float32Array(3000 * 3);
-        for(let i = 0; i < 9000; i++) posArray[i] = (Math.random() - 0.5) * 300;
+        for(let i = 0; i < 9000; i++) posArray[i] = (Math.random() - 0.5) * 400;
         starsGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
         const starMesh = new THREE.Points(starsGeo, new THREE.PointsMaterial({
-            size: 0.5, 
+            size: 0.8, 
             color: 0xffffff, 
             map: particleTex,
             transparent: true, 
             opacity: 0.8,
-            depthWrite: false
+            alphaTest: 0.01,
+            depthWrite: false,
+            blending: THREE.AdditiveBlending
         }));
         scene.add(starMesh);
 
@@ -574,11 +570,12 @@
         for(let i = 0; i < 4500; i++) nebPosArray[i] = (Math.random() - 0.5) * 150;
         nebulaGeo.setAttribute('position', new THREE.BufferAttribute(nebPosArray, 3));
         const nebulaMat = new THREE.PointsMaterial({
-            size: 15, 
+            size: 25, 
             color: 0x6a0dad, 
             map: particleTex,
             transparent: true, 
-            opacity: 0.15, 
+            opacity: 0.2, 
+            alphaTest: 0.01,
             blending: THREE.AdditiveBlending,
             depthWrite: false
         });
@@ -641,31 +638,42 @@
             function (gltf) {
                 const loadedScene = gltf.scene;
 
-                // Absolute center & Scale
+                // BUG FIX: Accurate Scaling & Absolute Centering 
+                // Fixes the issue where the drone flies off-screen while rotating
                 const box = new THREE.Box3().setFromObject(loadedScene);
-                const center = box.getCenter(new THREE.Vector3());
                 const size = box.getSize(new THREE.Vector3());
-                
-                loadedScene.position.sub(center);
-                loadedScene.scale.setScalar(6 / Math.max(size.x, size.y, size.z));
+                const scale = 6 / Math.max(size.x, size.y, size.z);
+                loadedScene.scale.setScalar(scale);
 
-                // Explosion Vectors
+                // Re-measure after scaling to ensure perfect absolute center
+                const scaledBox = new THREE.Box3().setFromObject(loadedScene);
+                const scaledCenter = scaledBox.getCenter(new THREE.Vector3());
+                loadedScene.position.x -= scaledCenter.x;
+                loadedScene.position.y -= scaledCenter.y;
+                loadedScene.position.z -= scaledCenter.z;
+
+                droneModel.add(loadedScene);
+
+                // BUG FIX: Force Matrix Update before calculating explosion vectors
+                droneModel.updateMatrixWorld(true);
+
+                // Calculate Explosion Vectors
                 loadedScene.traverse((child) => {
                     if (child.isMesh) {
                         if(child.material) { child.material.roughness = 0.3; child.material.metalness = 0.8; }
+                        
                         child.userData.originPos = child.position.clone();
                         
                         child.geometry.computeBoundingBox();
                         const partCenter = new THREE.Vector3();
                         child.geometry.boundingBox.getCenter(partCenter);
-                        partCenter.applyMatrix4(child.matrixWorld);
+                        partCenter.applyMatrix4(child.matrixWorld); // Now relies on updated, accurate matrix
                         
                         const explodeDir = partCenter.clone().normalize();
                         child.userData.explodeVector = explodeDir.multiplyScalar(partCenter.length() * 1.5 + 1.0);
                     }
                 });
 
-                droneModel.add(loadedScene);
                 gsap.to(loadingScreen, { opacity: 0, duration: 1.5, onComplete: () => loadingScreen.style.display = 'none' });
             },
             function (xhr) {
@@ -693,15 +701,14 @@
             }
         });
 
-        // 7 Cinematic Phases: Camera positions are pulled back to ensure the drone is ALWAYS in frame.
-        // lookAt is ALWAYS exactly (0,0,0) so the spinning drone never leaves the center.
+        // 7 Cinematic Phases: LookAt is strictly locked to (0,0,0) where the drone is centered
         const cameraViews = [
             { pos: new THREE.Vector3(0, 0, 18),   look: new THREE.Vector3(0, 0, 0) },     // 0: Hero
             { pos: new THREE.Vector3(0, 2, 12),   look: new THREE.Vector3(0, 0, 0) },     // 1: Overview
-            { pos: new THREE.Vector3(0, 8, 4),    look: new THREE.Vector3(0, 0, 0) },     // 2: Brains (Top Down)
+            { pos: new THREE.Vector3(0, 8, 2),    look: new THREE.Vector3(0, 0, 0) },     // 2: Brains (Top Down)
             { pos: new THREE.Vector3(6, 1, 6),    look: new THREE.Vector3(0, 0, 0) },     // 3: Thrust (Side/Prop Zoom)
             { pos: new THREE.Vector3(-10, 6, 10), look: new THREE.Vector3(0, 0, 0) },     // 4: Frame (Wide Isometric)
-            { pos: new THREE.Vector3(0, -6, 8),   look: new THREE.Vector3(0, 0, 0) },     // 5: Claw (Bottom looking up)
+            { pos: new THREE.Vector3(0, -6, 6),   look: new THREE.Vector3(0, 0, 0) },     // 5: Claw (Bottom looking up)
             { pos: new THREE.Vector3(0, 8, 22),   look: new THREE.Vector3(0, 0, 0) }      // 6: Exploded (Way back)
         ];
 
@@ -727,43 +734,42 @@
             const time = clock.getElapsedTime();
             
             // Continuous Background Animations
-            droneModel.rotation.y = time * 0.3; // Drone spins seamlessly
-            starMesh.rotation.y = time * 0.01;  // Stars drift
-            nebula.rotation.z = time * 0.02;    // Nebula swirls
-            asteroidBelt.rotation.y = time * 0.03; // Asteroids orbit
+            droneModel.rotation.y = time * 0.3; // Drone spins flawlessly in place
+            starMesh.rotation.y = time * 0.01;
+            nebula.rotation.z = time * 0.02;
+            asteroidBelt.rotation.y = time * 0.03;
             asteroidBelt.rotation.z = Math.sin(time * 0.1) * 0.05;
 
             // Scroll Math
-            const numTransitions = 6; // 7 sections = 6 transitions
+            const numTransitions = 6; 
             const scrollableHeight = window.innerHeight * numTransitions; 
             
-            // Limit targetProgress to 1 so camera locks when scrolling to gallery footer
+            // Lock targetProgress to 1 at the end so it stops zooming when entering footer
             const targetProgress = Math.min(1, Math.max(0, scrollY / scrollableHeight));
             currentProgress += (targetProgress - currentProgress) * 0.05;
 
             const sectionProgress = currentProgress * numTransitions;
-            const currentIndex = Math.min(Math.floor(sectionProgress), 5); // Max index is 5
+            const currentIndex = Math.min(Math.floor(sectionProgress), 5);
             const localProgress = sectionProgress - currentIndex;
 
             let isPulsating = false;
 
             if (currentProgress < 0.99) {
-                // Interpolate between current phase and next phase
                 lerpCamera(cameraViews[currentIndex], cameraViews[currentIndex + 1], localProgress);
                 
                 if(currentIndex === 5) {
-                    // Transitioning into the exploded view
                     setExplosion(localProgress * 0.5); 
                 } else {
                     setExplosion(0);
                 }
             } else {
-                // Final Phase: Locked camera, pulsating explosion
+                // Final Locked Phase
                 lerpCamera(cameraViews[6], cameraViews[6], 1);
                 isPulsating = true;
             }
 
             if (isPulsating) {
+                // Breathing Sine Wave
                 const pulse = (Math.sin(time * 2.0) + 1) / 2;
                 setExplosion(pulse * 0.6); 
             }
