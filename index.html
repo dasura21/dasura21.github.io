@@ -371,20 +371,12 @@
                 <!-- Left Column: Picture & Contact -->
                 <div class="md:col-span-1">
                     
-                    <!-- 
-                    ===================================================================
-                    PROFILE PICTURE UPLOAD INSTRUCTIONS:
-                    1. Save your photo as exactly "profile.jpg".
-                    2. Upload "profile.jpg" to your GitHub repository in the exact same 
-                       folder as this index.html file.
-                    3. The code below will automatically display it!
-                    =================================================================== 
-                    -->
+                    <!-- PROFILE PICTURE UPLOAD INSTRUCTIONS -->
                     <div class="w-full aspect-[4/5] rounded-2xl border border-gray-800 bg-gradient-to-b from-gray-900 to-black overflow-hidden flex flex-col items-center justify-center mb-8 relative group">
-                        <!-- This line displays your image -->
+                        <!-- Upload profile.jpg to your github folder to make it display here -->
                         <img src="./profile.jpg" alt="David Sura" class="w-full h-full object-cover z-10 relative fallback-hide" onerror="this.style.display='none'">
                         
-                        <!-- This is the placeholder text if the image isn't found -->
+                        <!-- Placeholder if image isn't found -->
                         <div class="text-center p-6 absolute inset-0 flex flex-col items-center justify-center z-0">
                             <span class="text-4xl mb-4 block">📸</span>
                             <p class="text-xs text-gray-400 uppercase tracking-widest font-mono">Profile Image</p>
@@ -404,7 +396,7 @@
 
                         <div class="mt-8 border-t border-gray-800 pt-6">
                             <!-- Download Resume Button -->
-                            <a href="./DavidSura2026resume.pdf" download="DavidSura2026resume.pdf" class="block w-full text-center bg-white text-black font-semibold px-4 py-3 rounded-xl hover:bg-gray-200 transition-colors text-sm">
+                            <a href="./DavidSura2026resume.pdf" download="DavidSura2026resume.pdf" class="block w-full text-center bg-[#2997ff] text-white font-semibold px-4 py-3 rounded-xl hover:bg-blue-600 transition-colors text-sm">
                                 Download PDF Resume
                             </a>
                         </div>
@@ -528,35 +520,63 @@
         renderer.toneMappingExposure = 1.2;
         container.appendChild(renderer.domElement);
 
-        // Lights
-        scene.add(new THREE.AmbientLight(0xffffff, 0.3));
+        // Cinematic Lighting
+        scene.add(new THREE.AmbientLight(0xffffff, 0.2));
         const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
         dirLight.position.set(5, 10, 7);
         scene.add(dirLight);
-        const blueLight = new THREE.PointLight(0x2997ff, 3, 30);
+        const blueLight = new THREE.PointLight(0x2997ff, 4, 30);
         blueLight.position.set(-5, -2, -5);
         scene.add(blueLight);
+        const purpleLight = new THREE.PointLight(0x8a2be2, 2, 40);
+        purpleLight.position.set(10, 5, -10);
+        scene.add(purpleLight);
 
         // ==========================================
-        // 2. DEEP SPACE ENVIRONMENT
+        // 2. PROCEDURAL TEXTURES & DEEP SPACE
         // ==========================================
         
-        // Starfield
+        // Function to create beautiful glowing circular particles instead of square boxes
+        function createParticleTexture() {
+            const canvas = document.createElement('canvas');
+            canvas.width = 32;
+            canvas.height = 32;
+            const context = canvas.getContext('2d');
+            const gradient = context.createRadialGradient(16, 16, 0, 16, 16, 16);
+            gradient.addColorStop(0, 'rgba(255,255,255,1)');
+            gradient.addColorStop(0.2, 'rgba(255,255,255,0.8)');
+            gradient.addColorStop(1, 'rgba(255,255,255,0)');
+            context.fillStyle = gradient;
+            context.fillRect(0, 0, 32, 32);
+            return new THREE.CanvasTexture(canvas);
+        }
+        
+        const particleTex = createParticleTexture();
+
+        // Starfield (Glowing Orbs)
         const starsGeo = new THREE.BufferGeometry();
         const posArray = new Float32Array(3000 * 3);
         for(let i = 0; i < 9000; i++) posArray[i] = (Math.random() - 0.5) * 300;
         starsGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const starMesh = new THREE.Points(starsGeo, new THREE.PointsMaterial({size: 0.1, color: 0xffffff, transparent: true, opacity: 0.8}));
+        const starMesh = new THREE.Points(starsGeo, new THREE.PointsMaterial({
+            size: 0.5, 
+            color: 0xffffff, 
+            map: particleTex,
+            transparent: true, 
+            opacity: 0.8,
+            depthWrite: false
+        }));
         scene.add(starMesh);
 
-        // Purple Nebula Dust (Point Cloud)
+        // Purple Nebula Dust (Soft Glowing Clouds)
         const nebulaGeo = new THREE.BufferGeometry();
         const nebPosArray = new Float32Array(1500 * 3);
         for(let i = 0; i < 4500; i++) nebPosArray[i] = (Math.random() - 0.5) * 150;
         nebulaGeo.setAttribute('position', new THREE.BufferAttribute(nebPosArray, 3));
         const nebulaMat = new THREE.PointsMaterial({
-            size: 6, 
-            color: 0x4B0082, 
+            size: 15, 
+            color: 0x6a0dad, 
+            map: particleTex,
             transparent: true, 
             opacity: 0.15, 
             blending: THREE.AdditiveBlending,
@@ -586,13 +606,13 @@
         // Asteroid Belt (Instanced Mesh for performance)
         const rockGeo = new THREE.DodecahedronGeometry(0.5, 0);
         const rockMat = new THREE.MeshStandardMaterial({color: 0x444444, roughness: 0.9, metalness: 0.2});
-        const asteroidBelt = new THREE.InstancedMesh(rockGeo, rockMat, 200);
+        const asteroidBelt = new THREE.InstancedMesh(rockGeo, rockMat, 300);
         const dummy = new THREE.Object3D();
         
-        for(let i = 0; i < 200; i++) {
+        for(let i = 0; i < 300; i++) {
             const angle = Math.random() * Math.PI * 2;
-            const radius = 25 + Math.random() * 10;
-            const yOffset = (Math.random() - 0.5) * 5;
+            const radius = 30 + Math.random() * 15;
+            const yOffset = (Math.random() - 0.5) * 8;
             dummy.position.set(Math.cos(angle) * radius, yOffset, Math.sin(angle) * radius);
             dummy.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
             dummy.scale.setScalar(Math.random() * 0.8 + 0.2);
@@ -621,7 +641,7 @@
             function (gltf) {
                 const loadedScene = gltf.scene;
 
-                // Center & Scale
+                // Absolute center & Scale
                 const box = new THREE.Box3().setFromObject(loadedScene);
                 const center = box.getCenter(new THREE.Vector3());
                 const size = box.getSize(new THREE.Vector3());
@@ -673,15 +693,16 @@
             }
         });
 
-        // 7 Cinematic Phases
+        // 7 Cinematic Phases: Camera positions are pulled back to ensure the drone is ALWAYS in frame.
+        // lookAt is ALWAYS exactly (0,0,0) so the spinning drone never leaves the center.
         const cameraViews = [
-            { pos: new THREE.Vector3(0, 0, 16),   look: new THREE.Vector3(0, 0, 0) },     // 0: Hero
-            { pos: new THREE.Vector3(0, 2, 14),   look: new THREE.Vector3(0, 0, 0) },     // 1: Overview
-            { pos: new THREE.Vector3(0, 10, 2),   look: new THREE.Vector3(0, 0, 0) },     // 2: Brains (Top)
-            { pos: new THREE.Vector3(4, 1, 4),    look: new THREE.Vector3(2, 0, 2) },     // 3: Thrust (Prop Zoom)
-            { pos: new THREE.Vector3(-8, 5, 8),   look: new THREE.Vector3(0, 0, 0) },     // 4: Frame (Isometric)
-            { pos: new THREE.Vector3(0, -4, 6),   look: new THREE.Vector3(0, -1, 0) },    // 5: Claw (Bottom)
-            { pos: new THREE.Vector3(0, 6, 18),   look: new THREE.Vector3(0, 0, 0) }      // 6: Exploded
+            { pos: new THREE.Vector3(0, 0, 18),   look: new THREE.Vector3(0, 0, 0) },     // 0: Hero
+            { pos: new THREE.Vector3(0, 2, 12),   look: new THREE.Vector3(0, 0, 0) },     // 1: Overview
+            { pos: new THREE.Vector3(0, 8, 4),    look: new THREE.Vector3(0, 0, 0) },     // 2: Brains (Top Down)
+            { pos: new THREE.Vector3(6, 1, 6),    look: new THREE.Vector3(0, 0, 0) },     // 3: Thrust (Side/Prop Zoom)
+            { pos: new THREE.Vector3(-10, 6, 10), look: new THREE.Vector3(0, 0, 0) },     // 4: Frame (Wide Isometric)
+            { pos: new THREE.Vector3(0, -6, 8),   look: new THREE.Vector3(0, 0, 0) },     // 5: Claw (Bottom looking up)
+            { pos: new THREE.Vector3(0, 8, 22),   look: new THREE.Vector3(0, 0, 0) }      // 6: Exploded (Way back)
         ];
 
         function lerpCamera(viewA, viewB, factor) {
@@ -706,17 +727,17 @@
             const time = clock.getElapsedTime();
             
             // Continuous Background Animations
-            droneModel.rotation.y = time * 0.2; // Drone spins seamlessly
+            droneModel.rotation.y = time * 0.3; // Drone spins seamlessly
             starMesh.rotation.y = time * 0.01;  // Stars drift
             nebula.rotation.z = time * 0.02;    // Nebula swirls
-            asteroidBelt.rotation.y = time * 0.05; // Asteroids orbit
-            asteroidBelt.rotation.z = Math.sin(time * 0.1) * 0.1;
+            asteroidBelt.rotation.y = time * 0.03; // Asteroids orbit
+            asteroidBelt.rotation.z = Math.sin(time * 0.1) * 0.05;
 
             // Scroll Math
             const numTransitions = 6; // 7 sections = 6 transitions
             const scrollableHeight = window.innerHeight * numTransitions; 
             
-            // Limit targetProgress to 1 so camera locks when scrolling to gallery
+            // Limit targetProgress to 1 so camera locks when scrolling to gallery footer
             const targetProgress = Math.min(1, Math.max(0, scrollY / scrollableHeight));
             currentProgress += (targetProgress - currentProgress) * 0.05;
 
@@ -726,7 +747,7 @@
 
             let isPulsating = false;
 
-            if (currentProgress < 1) {
+            if (currentProgress < 0.99) {
                 // Interpolate between current phase and next phase
                 lerpCamera(cameraViews[currentIndex], cameraViews[currentIndex + 1], localProgress);
                 
