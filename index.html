@@ -65,10 +65,10 @@
             position: relative;
         }
 
-        /* Glassmorphism UI (Apple Style) */
+        /* Glassmorphism UI */
         .glass-panel {
             pointer-events: auto;
-            background: rgba(20, 20, 20, 0.4);
+            background: rgba(20, 20, 20, 0.5);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -104,7 +104,6 @@
             transition: opacity 1.5s ease;
         }
 
-        /* Subtle Loader */
         .apple-loader {
             width: 40px;
             height: 40px;
@@ -123,6 +122,12 @@
         @media (max-width: 768px) {
             .section { padding: 2rem; }
         }
+
+        /* Nav Tab Active State */
+        .nav-tab.active {
+            color: #fff;
+            border-bottom: 2px solid #2997ff;
+        }
     </style>
 </head>
 <body>
@@ -138,176 +143,272 @@
         </div>
     </div>
 
-    <!-- 3D Canvas -->
-    <div id="canvas-container"></div>
-
-    <!-- Fixed Header -->
-    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-6 mix-blend-difference pointer-events-none">
-        <div class="text-xl font-bold tracking-widest text-white">DS.</div>
-        <div class="hidden md:flex gap-8 text-[11px] font-semibold tracking-widest text-gray-400 uppercase">
-            <span class="text-white">Overview</span>
-            <span>Avionics</span>
-            <span>Propulsion</span>
-            <span>Gallery</span>
+    <!-- Fixed Header Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-8 py-6 bg-black/50 backdrop-blur-md border-b border-white/10">
+        <div class="text-xl font-bold tracking-widest text-white cursor-pointer" onclick="switchTab('projects')">DS.</div>
+        <div class="flex gap-8 text-xs font-semibold tracking-widest text-gray-400 uppercase">
+            <button id="tab-projects" class="nav-tab active pb-1 hover:text-white transition-colors" onclick="switchTab('projects')">Engineering Projects</button>
+            <button id="tab-about" class="nav-tab pb-1 hover:text-white transition-colors" onclick="switchTab('about')">About Me</button>
         </div>
     </nav>
 
-    <!-- Scrollable Content -->
-    <div class="scroll-container" id="scroll-container">
-        
-        <!-- Phase 0: Hero / Overview -->
-        <div class="section items-center text-center">
-            <div class="mt-auto mb-32 max-w-4xl px-4 pointer-events-auto">
-                <p class="text-[#2997ff] text-xs font-bold tracking-[0.2em] mb-4 uppercase">UIC Mechanical Engineering '28</p>
-                <h1 class="text-5xl md:text-8xl font-extrabold tracking-tight text-gradient mb-6 leading-tight">
-                    Pro. Beyond.
-                </h1>
-                <p class="text-xl md:text-2xl text-gray-400 font-light max-w-2xl mx-auto mb-8">
-                    Autonomous Payload Retrieval & Delivery Drone. <br> Engineered for strict C-UASC compliance.
-                </p>
-                <div class="text-xs text-gray-500 tracking-widest uppercase mt-12 animate-pulse">
-                    Scroll to Explore
-                </div>
-            </div>
-        </div>
+    <!-- =========================================
+         VIEW 1: ENGINEERING PROJECTS (3D SPA)
+         ========================================= -->
+    <div id="view-projects" class="block">
+        <!-- 3D Canvas -->
+        <div id="canvas-container"></div>
 
-        <!-- Phase 1: Avionics Zoom -->
-        <div class="section items-start md:pl-24">
-            <div class="glass-panel p-10 max-w-md mt-32 text-left">
-                <h2 class="text-3xl font-bold text-white mb-2">The Brains.</h2>
-                <h3 class="text-xl text-gradient-blue font-semibold mb-6">Cube Orange + Jetson Orin</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                    Spearheaded cross-functional integration with electrical teams, designing precision mechanical housings tailored to accommodate complex sensor arrays and autonomous computing hardware.
-                </p>
-                <ul class="text-xs font-mono text-gray-500 space-y-2 border-l border-gray-700 pl-4">
-                    <li><span class="text-white">Processing:</span> NVIDIA Edge Computing</li>
-                    <li><span class="text-white">Nav:</span> Here 4 GNSS (RTK)</li>
-                    <li><span class="text-white">Comms:</span> 900MHz Telemetry</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Phase 2: Propulsion Zoom -->
-        <div class="section items-end md:pr-24">
-            <div class="glass-panel p-10 max-w-md mt-32 text-left">
-                <h2 class="text-3xl font-bold text-white mb-2">Pure Thrust.</h2>
-                <h3 class="text-xl text-gradient-blue font-semibold mb-6">Optimized BLDC Systems</h3>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                    Executed comprehensive thrust-to-weight ratio analyses on diverse propulsion systems, optimizing the selection of brushless DC motors to maximize payload capacity.
-                </p>
-                <div class="grid grid-cols-2 gap-4 text-xs font-mono text-gray-500">
-                    <div class="bg-black/40 p-3 rounded-lg border border-gray-800">
-                        <span class="block text-white mb-1">MOTORS</span>
-                        EMAX ECO II 3115
-                    </div>
-                    <div class="bg-black/40 p-3 rounded-lg border border-gray-800">
-                        <span class="block text-white mb-1">PROPS</span>
-                        HQProp 11x7.5x3
+        <!-- Scrollable Content -->
+        <div class="scroll-container" id="scroll-container">
+            
+            <!-- Phase 0: Hero -->
+            <div class="section items-center text-center">
+                <div class="mt-auto mb-32 max-w-4xl px-4 pointer-events-auto">
+                    <p class="text-[#2997ff] text-xs font-bold tracking-[0.2em] mb-4 uppercase">UIC Mechanical Engineering '28</p>
+                    <h1 class="text-5xl md:text-8xl font-extrabold tracking-tight text-gradient mb-6 leading-tight">
+                        Pro. Beyond.
+                    </h1>
+                    <p class="text-xl md:text-2xl text-gray-400 font-light max-w-2xl mx-auto mb-8">
+                        Autonomous Payload Retrieval & Delivery Drone.
+                    </p>
+                    <div class="text-xs text-gray-500 tracking-widest uppercase mt-12 animate-pulse">
+                        Scroll to Explore
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Phase 3: Exploded View Pulsation -->
-        <div class="section items-center text-center">
-            <div class="glass-panel p-8 max-w-2xl mt-auto mb-24">
-                <h2 class="text-4xl font-bold text-white mb-4">Mastering the BOM.</h2>
-                <p class="text-gray-400 text-sm leading-relaxed mb-0">
-                    Architected and managed a comprehensive Bill of Materials (BOM). <br> From carbon fiber rods to complex DFM housings, every component is rigorously tracked to streamline physical manufacturing.
-                </p>
+            <!-- Phase 1: Project Overview (Pinned Center) -->
+            <div class="section items-start md:pl-24">
+                <div class="glass-panel p-10 max-w-md mt-32 text-left">
+                    <h2 class="text-3xl font-bold text-white mb-2">Project Overview.</h2>
+                    <h3 class="text-xl text-gradient-blue font-semibold mb-6">C-UASC Compliant</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Engineered a custom, lightweight autonomous drone frame applying rigorous First Principles analysis to ensure strict compliance with C-UASC weight and volumetric constraints.
+                    </p>
+                    <a href="./DavidSura2026resume.pdf" download="DavidSura2026resume.pdf" class="inline-block bg-white/10 hover:bg-white/20 text-white font-mono text-xs px-4 py-2 rounded-full transition-colors">
+                        Download Tech Specs (Resume)
+                    </a>
+                </div>
             </div>
-        </div>
 
-        <!-- Phase 4: CAD Gallery & Resume Footer -->
-        <div class="min-h-screen bg-[#050505] relative z-20 py-32 pointer-events-auto border-t border-gray-900">
-            <div class="max-w-6xl mx-auto px-8">
-                
-                <div class="text-center mb-20">
-                    <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Engineering Gallery.</h2>
-                    <p class="text-xl text-gray-500 font-light">Precision from First Principles.</p>
+            <!-- Phase 2: Avionics Zoom (Top Angle) -->
+            <div class="section items-end md:pr-24">
+                <div class="glass-panel p-10 max-w-md mt-32 text-left">
+                    <h2 class="text-3xl font-bold text-white mb-2">The Brains.</h2>
+                    <h3 class="text-xl text-gradient-blue font-semibold mb-6">Cube Orange + Jetson Orin</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Spearheaded cross-functional integration with electrical teams, designing precision mechanical housings tailored to accommodate complex sensor arrays and autonomous computing hardware.
+                    </p>
+                    <ul class="text-xs font-mono text-gray-500 space-y-2 border-l border-gray-700 pl-4">
+                        <li><span class="text-white">Processing:</span> NVIDIA Edge Computing</li>
+                        <li><span class="text-white">Nav:</span> Here 4 GNSS (RTK)</li>
+                        <li><span class="text-white">Comms:</span> 900MHz Telemetry</li>
+                    </ul>
                 </div>
+            </div>
 
-                <!-- CAD Cards -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
-                    
-                    <div class="glass-panel p-8 group hover:scale-[1.02] transition-transform cursor-pointer">
-                        <div class="h-40 flex items-center justify-center border-b border-gray-800 mb-6">
-                            <div class="w-16 h-16 border-[3px] border-[#2997ff] rounded-full relative animate-[spin_10s_linear_infinite]">
-                                <div class="absolute w-20 h-[2px] bg-[#2997ff] top-8 -left-2"></div>
-                                <div class="absolute w-[2px] h-20 bg-[#2997ff] left-8 -top-2"></div>
-                            </div>
+            <!-- Phase 3: Propulsion Zoom (Propeller) -->
+            <div class="section items-start md:pl-24">
+                <div class="glass-panel p-10 max-w-md text-left">
+                    <h2 class="text-3xl font-bold text-white mb-2">Pure Thrust.</h2>
+                    <h3 class="text-xl text-gradient-blue font-semibold mb-6">Optimized BLDC Systems</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Executed comprehensive thrust-to-weight ratio analyses on diverse propulsion systems, optimizing the selection of brushless DC motors to maximize payload capacity.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 text-xs font-mono text-gray-500">
+                        <div class="bg-black/40 p-3 rounded-lg border border-gray-800">
+                            <span class="block text-white mb-1">MOTORS</span>
+                            EMAX ECO II 3115
                         </div>
-                        <h4 class="text-lg text-white font-semibold mb-2">Sensor Housing DFM</h4>
-                        <p class="text-xs text-gray-400 leading-relaxed">Geometric Dimensioning and Tolerancing (GD&T) applied to protect the Raspberry Pi HQ Camera and optics.</p>
-                    </div>
-
-                    <div class="glass-panel p-8 group hover:scale-[1.02] transition-transform cursor-pointer">
-                        <div class="h-40 flex items-center justify-center border-b border-gray-800 mb-6">
-                            <div class="w-24 h-12 border-[3px] border-[#2997ff] rounded-xl relative">
-                                <div class="absolute w-full h-[2px] bg-[#2997ff] top-5"></div>
-                            </div>
-                        </div>
-                        <h4 class="text-lg text-white font-semibold mb-2">Carbon Fiber Integration</h4>
-                        <p class="text-xs text-gray-400 leading-relaxed">Structural analysis on the main chassis to navigate complex mechanical constraints and optimize weight.</p>
-                    </div>
-
-                    <div class="glass-panel p-8 group hover:scale-[1.02] transition-transform cursor-pointer">
-                        <div class="h-40 flex items-center justify-center border-b border-gray-800 mb-6">
-                            <div class="w-12 h-20 border-[3px] border-[#2997ff] relative">
-                                <div class="absolute -left-4 top-4 w-20 h-[2px] bg-[#2997ff] rotate-45"></div>
-                                <div class="absolute -left-4 bottom-4 w-20 h-[2px] bg-[#2997ff] -rotate-45"></div>
-                            </div>
-                        </div>
-                        <h4 class="text-lg text-white font-semibold mb-2">First Principles</h4>
-                        <p class="text-xs text-gray-400 leading-relaxed">Thermodynamics and Statics applied to ensure system survivability in diverse operational envelopes.</p>
-                    </div>
-
-                </div>
-
-                <!-- Contact & Info -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 border-t border-gray-800 pt-16">
-                    <div>
-                        <h3 class="text-2xl font-bold text-white mb-6">David Sura</h3>
-                        <p class="text-gray-400 font-light mb-6">
-                            Mechanical engineering candidate specializing in advanced structural design, systems integration, and rapid prototyping.
-                        </p>
-                        <a href="#" class="inline-block bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition-colors text-sm">
-                            Download Resume
-                        </a>
-                    </div>
-                    
-                    <div class="grid grid-cols-2 gap-8 text-sm">
-                        <div>
-                            <h4 class="text-white font-semibold mb-4">Technical Skills</h4>
-                            <ul class="text-gray-500 space-y-2">
-                                <li>SolidWorks, AutoCAD</li>
-                                <li>DFM & GD&T</li>
-                                <li>First Principles Analysis</li>
-                                <li>MATLAB</li>
-                                <li>Java, C/C++ (Arduino)</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="text-white font-semibold mb-4">Contact</h4>
-                            <ul class="text-gray-500 space-y-2">
-                                <li>Chicago, IL</li>
-                                <li><a href="mailto:dasura21@outlook.com" class="hover:text-white transition-colors">dasura21@outlook.com</a></li>
-                                <li>773-916-0777</li>
-                                <li>davidsura.com</li>
-                            </ul>
+                        <div class="bg-black/40 p-3 rounded-lg border border-gray-800">
+                            <span class="block text-white mb-1">PROPS</span>
+                            HQProp 11x7.5x3
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="text-center mt-32 pb-8 text-xs text-gray-600">
-                    © 2026 David Sura. ASME Member. GPA: 4.0/4.0.
+            <!-- Phase 4: Frame Zoom (Full Isometric) -->
+            <div class="section items-end md:pr-24">
+                <div class="glass-panel p-10 max-w-md text-left">
+                    <h2 class="text-3xl font-bold text-white mb-2">Structural Integrity.</h2>
+                    <h3 class="text-xl text-gradient-blue font-semibold mb-6">Carbon Fiber Architecture</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Leveraged CAD and First Principles analysis to navigate complex mechanical constraints. Carbon fiber tubes and CNC-milled plates were selected for their exceptional strength-to-weight ratio.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Phase 5: Claw Zoom (Bottom Angle) -->
+            <div class="section items-start md:pl-24">
+                <div class="glass-panel p-10 max-w-md text-left">
+                    <h2 class="text-3xl font-bold text-white mb-2">Payload Retrieval.</h2>
+                    <h3 class="text-xl text-gradient-blue font-semibold mb-6">Actuated End-Effector</h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Designed a reliable, lightweight end-effector mechanism (claw) enabling the UAV to autonomously secure, transport, and accurately release designated payloads during mission operations.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Phase 6: Exploded View Pulsation -->
+            <div class="section items-center text-center">
+                <div class="glass-panel p-8 max-w-2xl mt-auto mb-24">
+                    <h2 class="text-4xl font-bold text-white mb-4">Mastering the BOM.</h2>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-0">
+                        Architected and managed a comprehensive Bill of Materials (BOM). From carbon fiber rods to complex DFM housings, every component is rigorously tracked to streamline rapid prototyping and physical manufacturing.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Footer for Projects -->
+            <div class="bg-[#050505] relative z-20 py-16 pointer-events-auto border-t border-gray-900 text-center">
+                <p class="text-gray-500 text-sm">© 2026 David Sura. Engineering Projects Portfolio.</p>
+                <div class="mt-4">
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-[#2997ff] text-xs uppercase tracking-widest font-mono hover:text-white transition-colors">↑ Back to Top</button>
                 </div>
             </div>
         </div>
-
     </div>
 
-    <!-- Main Logic using ES Modules -->
+
+    <!-- =========================================
+         VIEW 2: ABOUT ME (Standard HTML)
+         ========================================= -->
+    <div id="view-about" class="hidden min-h-screen pt-32 pb-24 bg-[#050505] relative z-40">
+        <div class="max-w-5xl mx-auto px-8">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 items-start">
+                
+                <!-- Left Column: Picture & Contact -->
+                <div class="md:col-span-1">
+                    <!-- Profile Picture Placeholder -->
+                    <div class="w-full aspect-[4/5] rounded-2xl border border-gray-800 bg-gradient-to-b from-gray-900 to-black overflow-hidden flex flex-col items-center justify-center mb-8 relative group">
+                        <!-- Instructions for user: Add an <img> tag here and point src to your photo -->
+                        <div class="text-center p-6 opacity-50 group-hover:opacity-100 transition-opacity">
+                            <span class="text-4xl mb-4 block">📸</span>
+                            <p class="text-xs text-gray-400 uppercase tracking-widest font-mono">Profile Image Space</p>
+                            <p class="text-[10px] text-gray-600 mt-2">(Upload your photo to GitHub and add an &lt;img&gt; tag here)</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="glass-panel p-6">
+                        <h3 class="text-white font-semibold mb-4 text-sm uppercase tracking-widest">Contact</h3>
+                        <ul class="text-gray-400 space-y-3 text-sm">
+                            <li class="flex items-center gap-3">📍 Chicago, IL</li>
+                            <li class="flex items-center gap-3">✉️ <a href="mailto:dasura21@outlook.com" class="hover:text-white transition-colors">dasura21@outlook.com</a></li>
+                            <li class="flex items-center gap-3">📞 773-916-0777</li>
+                            <li class="flex items-center gap-3">🌐 davidsura.com</li>
+                        </ul>
+
+                        <div class="mt-8 border-t border-gray-800 pt-6">
+                            <a href="./DavidSura2026resume.pdf" download="DavidSura2026resume.pdf" class="block w-full text-center bg-white text-black font-semibold px-4 py-3 rounded-xl hover:bg-gray-200 transition-colors text-sm">
+                                Download PDF Resume
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Biography & Experience -->
+                <div class="md:col-span-2">
+                    <h1 class="text-5xl font-bold text-white mb-6">David Sura</h1>
+                    <h2 class="text-xl text-[#2997ff] font-light mb-8">Mechanical Engineering Student</h2>
+                    
+                    <p class="text-gray-300 text-lg leading-relaxed mb-12 font-light">
+                        Mechanical engineering candidate specializing in advanced structural design, systems integration, and Design for Manufacturing (DFM) principles. Proven track record of leveraging CAD and rigorous First Principles analysis to navigate complex mechanical constraints, optimize Bill of Materials (BOM), and accelerate rapid prototyping lifecycles for autonomous mechanical systems.
+                    </p>
+
+                    <!-- Education -->
+                    <div class="mb-12">
+                        <h3 class="text-white text-2xl font-bold mb-6 border-b border-gray-800 pb-2">Education</h3>
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <h4 class="text-lg text-white font-semibold">University of Illinois at Chicago (UIC)</h4>
+                                <p class="text-gray-400">Bachelor of Science in Mechanical Engineering</p>
+                                <p class="text-sm text-gray-500 mt-2 italic">Relevant Coursework: Thermodynamics, Strength & Materials, Statics, Dynamics, Structural Analysis, Engineering CAD Design.</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-[#2997ff] font-mono font-bold">GPA: 4.0/4.0</p>
+                                <p class="text-sm text-gray-500 mt-1">Expected May 2028</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Experience -->
+                    <div class="mb-12">
+                        <h3 class="text-white text-2xl font-bold mb-6 border-b border-gray-800 pb-2">Professional Experience</h3>
+                        
+                        <div class="mb-8">
+                            <div class="flex justify-between items-start mb-2">
+                                <h4 class="text-lg text-white font-semibold">Handshake AI Project Trainer</h4>
+                                <span class="text-sm text-gray-400 font-mono">Oct 2025 - Present</span>
+                            </div>
+                            <p class="text-[#2997ff] text-sm mb-3">AI Trainer & Prompt Engineer | Remote</p>
+                            <ul class="list-disc list-inside text-gray-300 space-y-2 text-sm leading-relaxed">
+                                <li>Collaborated asynchronously with leading artificial intelligence laboratories to evaluate and optimize Large Language Model (LLM) outputs, ensuring high-fidelity reasoning and logic across specialized STEM domains.</li>
+                                <li>Engineered domain-specific prompts and executed rigorous quality assurance protocols on massive datasets, directly accelerating the algorithmic accuracy, technical problem-solving capabilities, and performance of advanced machine learning models.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Skills Matrix -->
+                    <div>
+                        <h3 class="text-white text-2xl font-bold mb-6 border-b border-gray-800 pb-2">Technical Arsenal</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="glass-panel p-5">
+                                <h4 class="text-sm text-white font-mono uppercase tracking-widest mb-3">Engineering & Design</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed">SolidWorks, AutoCAD, Arduino IDE, MATLAB.</p>
+                            </div>
+                            <div class="glass-panel p-5">
+                                <h4 class="text-sm text-white font-mono uppercase tracking-widest mb-3">Methodologies</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed">Design for Manufacturability (DFM), Geometric Dimensioning and Tolerancing (GD&T), Rapid Prototyping, Bill of Materials (BOM) Management, First Principles Analysis.</p>
+                            </div>
+                            <div class="glass-panel p-5">
+                                <h4 class="text-sm text-white font-mono uppercase tracking-widest mb-3">Programming</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed">Java, C/C++ (Arduino).</p>
+                            </div>
+                            <div class="glass-panel p-5">
+                                <h4 class="text-sm text-white font-mono uppercase tracking-widest mb-3">Affiliations</h4>
+                                <p class="text-gray-400 text-sm leading-relaxed">American Society of Mechanical Engineers (ASME) | Member</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UI Tab Logic -->
+    <script>
+        function switchTab(tabName) {
+            // Update Tab Styling
+            document.getElementById('tab-projects').classList.remove('active');
+            document.getElementById('tab-about').classList.remove('active');
+            document.getElementById('tab-' + tabName).classList.add('active');
+
+            // Switch Views
+            if(tabName === 'projects') {
+                document.getElementById('view-projects').classList.remove('hidden');
+                document.getElementById('view-projects').classList.add('block');
+                document.getElementById('view-about').classList.add('hidden');
+                document.getElementById('view-about').classList.remove('block');
+                // Re-enable canvas scrolling logic
+                document.getElementById('canvas-container').style.display = 'block';
+            } else {
+                document.getElementById('view-projects').classList.add('hidden');
+                document.getElementById('view-projects').classList.remove('block');
+                document.getElementById('view-about').classList.remove('hidden');
+                document.getElementById('view-about').classList.add('block');
+                // Hide canvas to save resources and prevent overlap issues
+                document.getElementById('canvas-container').style.display = 'none';
+                window.scrollTo(0, 0);
+            }
+        }
+    </script>
+
+    <!-- Main 3D Logic using ES Modules -->
     <script type="module">
         import * as THREE from 'three';
         import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -318,7 +419,6 @@
         // ==========================================
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
-        // Deep space background
         scene.background = new THREE.Color(0x000000);
         scene.fog = new THREE.FogExp2(0x000000, 0.03);
 
@@ -327,69 +427,42 @@
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        
-        // Premium Apple-style lighting (High contrast, soft shadows)
         renderer.toneMapping = THREE.ACESFilmicToneMapping;
         renderer.toneMappingExposure = 1.2;
         container.appendChild(renderer.domElement);
 
         // Lights
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.3); // Very dim ambient
-        scene.add(ambientLight);
-
-        // Key light (dramatic rim/side lighting)
+        scene.add(new THREE.AmbientLight(0xffffff, 0.3));
         const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
         dirLight.position.set(5, 10, 7);
         scene.add(dirLight);
-
-        // Blue accent light
         const blueLight = new THREE.PointLight(0x2997ff, 3, 20);
         blueLight.position.set(-5, -2, -5);
         scene.add(blueLight);
 
-        // ==========================================
-        // 2. SPACE BACKGROUND
-        // ==========================================
-        
-        // Starfield
+        // Space Background (Starfield & Planet)
         const starsGeo = new THREE.BufferGeometry();
-        const starsCount = 2000;
-        const posArray = new Float32Array(starsCount * 3);
-        for(let i = 0; i < starsCount * 3; i++) {
-            // Spread widely
-            posArray[i] = (Math.random() - 0.5) * 200;
-        }
+        const posArray = new Float32Array(2000 * 3);
+        for(let i = 0; i < 6000; i++) posArray[i] = (Math.random() - 0.5) * 200;
         starsGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-        const starsMat = new THREE.PointsMaterial({
-            size: 0.1,
-            color: 0xffffff,
-            transparent: true,
-            opacity: 0.8
-        });
-        const starMesh = new THREE.Points(starsGeo, starsMat);
+        const starMesh = new THREE.Points(starsGeo, new THREE.PointsMaterial({size: 0.1, color: 0xffffff, transparent: true, opacity: 0.8}));
         scene.add(starMesh);
 
-        // Distant Planet / Nebula sphere
-        const planetGeo = new THREE.SphereGeometry(40, 64, 64);
-        const planetMat = new THREE.MeshStandardMaterial({
-            color: 0x050510,
-            emissive: 0x020211,
-            roughness: 0.9,
-            metalness: 0.1
-        });
-        const planet = new THREE.Mesh(planetGeo, planetMat);
-        planet.position.set(-50, -20, -100); // Far away
+        const planet = new THREE.Mesh(
+            new THREE.SphereGeometry(40, 64, 64), 
+            new THREE.MeshStandardMaterial({color: 0x050510, emissive: 0x020211, roughness: 0.9, metalness: 0.1})
+        );
+        planet.position.set(-50, -20, -100);
         scene.add(planet);
 
         // ==========================================
-        // 3. GLTF & DRACO LOADER (AUTO-LOAD)
+        // 2. GLTF & DRACO LOADER
         // ==========================================
         let droneModel = new THREE.Group();
         scene.add(droneModel);
         
         const dracoLoader = new DRACOLoader();
         dracoLoader.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');
-        
         const gltfLoader = new GLTFLoader();
         gltfLoader.setDRACOLoader(dracoLoader);
 
@@ -397,96 +470,80 @@
         const progressText = document.getElementById('loading-progress');
         const errorText = document.getElementById('loading-error');
 
-        // LOAD DIRECTLY FROM RELATIVE PATH
         gltfLoader.load(
             'FullDroneAssemblySura.glb',
             function (gltf) {
                 const loadedScene = gltf.scene;
 
-                // Auto-Center and Normalize Scale
+                // Center & Scale
                 const box = new THREE.Box3().setFromObject(loadedScene);
                 const center = box.getCenter(new THREE.Vector3());
                 const size = box.getSize(new THREE.Vector3());
                 
-                loadedScene.position.x += (loadedScene.position.x - center.x);
-                loadedScene.position.y += (loadedScene.position.y - center.y);
-                loadedScene.position.z += (loadedScene.position.z - center.z);
-                
-                const maxDim = Math.max(size.x, size.y, size.z);
-                const targetSize = 6; 
-                const scale = targetSize / maxDim;
-                loadedScene.scale.setScalar(scale);
+                loadedScene.position.sub(center);
+                loadedScene.scale.setScalar(6 / Math.max(size.x, size.y, size.z));
 
-                // Prepare Explosion Vectors
+                // Explosion Vectors
                 loadedScene.traverse((child) => {
                     if (child.isMesh) {
-                        // Apply sleek metallic materials
-                        if(child.material) {
-                            child.material.roughness = 0.3;
-                            child.material.metalness = 0.8;
-                        }
-
+                        if(child.material) { child.material.roughness = 0.3; child.material.metalness = 0.8; }
                         child.userData.originPos = child.position.clone();
                         
                         child.geometry.computeBoundingBox();
                         const partCenter = new THREE.Vector3();
                         child.geometry.boundingBox.getCenter(partCenter);
-                        
                         partCenter.applyMatrix4(child.matrixWorld);
                         
                         const explodeDir = partCenter.clone().normalize();
-                        const distance = partCenter.length();
-                        child.userData.explodeVector = explodeDir.multiplyScalar(distance * 1.5 + 1.0);
+                        child.userData.explodeVector = explodeDir.multiplyScalar(partCenter.length() * 1.5 + 1.0);
                     }
                 });
 
                 droneModel.add(loadedScene);
-
-                // Fade out loader
                 gsap.to(loadingScreen, { opacity: 0, duration: 1.5, onComplete: () => loadingScreen.style.display = 'none' });
             },
             function (xhr) {
                 if (xhr.lengthComputable) {
-                    const percentComplete = xhr.loaded / xhr.total * 100;
-                    progressText.innerText = `Loading CAD Assembly... ${Math.round(percentComplete)}%`;
+                    progressText.innerText = `Loading CAD Assembly... ${Math.round((xhr.loaded / xhr.total) * 100)}%`;
                 }
             },
             function (error) {
-                console.error('Error loading the GLB. Ensure file is accessible.', error);
+                console.error('Error loading GLB:', error);
                 errorText.classList.remove('hidden');
                 progressText.style.display = 'none';
             }
         );
 
         // ==========================================
-        // 4. SCROLL & CINEMATIC CAMERA LOGIC
+        // 3. SCROLL & CINEMATIC CAMERA LOGIC
         // ==========================================
         let scrollY = 0;
         let currentProgress = 0;
         let clock = new THREE.Clock();
         
-        window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+        window.addEventListener('scroll', () => { 
+            // Only track scroll if we are in the Projects view
+            if(!document.getElementById('view-projects').classList.contains('hidden')) {
+                scrollY = window.scrollY; 
+            }
+        });
 
-        // Camera Waypoints for the Zooms
-        // Each phase has a position and a lookAt target
+        // 7 Cinematic Phases
         const cameraViews = [
-            { pos: new THREE.Vector3(0, 0, 14), look: new THREE.Vector3(0, 0, 0) }, // 0: Hero Overview
-            { pos: new THREE.Vector3(0, 3, 5),  look: new THREE.Vector3(0, 0, 0) }, // 1: Zoom Core (Avionics)
-            { pos: new THREE.Vector3(4, 1, 4),  look: new THREE.Vector3(1.5, 0, 1.5) }, // 2: Zoom Arm (Propulsion)
-            { pos: new THREE.Vector3(0, 6, 16), look: new THREE.Vector3(0, 0, 0) },  // 3: Pull back, pulse explosion
+            { pos: new THREE.Vector3(0, 0, 16),   look: new THREE.Vector3(0, 0, 0) },     // 0: Hero
+            { pos: new THREE.Vector3(0, 2, 14),   look: new THREE.Vector3(0, 0, 0) },     // 1: Overview
+            { pos: new THREE.Vector3(0, 10, 2),   look: new THREE.Vector3(0, 0, 0) },     // 2: Brains (Top)
+            { pos: new THREE.Vector3(4, 1, 4),    look: new THREE.Vector3(2, 0, 2) },     // 3: Thrust (Prop Zoom)
+            { pos: new THREE.Vector3(-8, 5, 8),   look: new THREE.Vector3(0, 0, 0) },     // 4: Frame (Isometric)
+            { pos: new THREE.Vector3(0, -4, 6),   look: new THREE.Vector3(0, -1, 0) },    // 5: Claw (Bottom)
+            { pos: new THREE.Vector3(0, 6, 18),   look: new THREE.Vector3(0, 0, 0) }      // 6: Exploded
         ];
 
-        // Helper: Interpolate between two views
         function lerpCamera(viewA, viewB, factor) {
-            // Smoothly move camera
             camera.position.lerpVectors(viewA.pos, viewB.pos, factor);
-            
-            // Smoothly change lookAt target
-            const currentLookAt = new THREE.Vector3().lerpVectors(viewA.look, viewB.look, factor);
-            camera.lookAt(currentLookAt);
+            camera.lookAt(new THREE.Vector3().lerpVectors(viewA.look, viewB.look, factor));
         }
 
-        // Apply Explosion Function
         function setExplosion(factor) {
             droneModel.traverse((child) => {
                 if (child.isMesh && child.userData.originPos && child.userData.explodeVector) {
@@ -499,57 +556,44 @@
 
         function animate() {
             requestAnimationFrame(animate);
+            if(document.getElementById('view-projects').classList.contains('hidden')) return;
+
             const time = clock.getElapsedTime();
-
-            // Always slowly rotate the drone seamlessly
+            
+            // Continuous Background Animations
             droneModel.rotation.y = time * 0.2;
-            
-            // Slowly rotate stars
             starMesh.rotation.y = time * 0.02;
-            starMesh.rotation.x = time * 0.01;
 
-            // Calculate scroll progress (0 to 1) based on the 4 scroll sections
-            const scrollableHeight = window.innerHeight * 4; 
+            // Scroll Math (7 sections total)
+            const numSections = 7;
+            const scrollableHeight = window.innerHeight * numSections; 
             const targetProgress = Math.min(1, Math.max(0, scrollY / scrollableHeight));
-            
-            // Lerp for smooth cinematic feel
             currentProgress += (targetProgress - currentProgress) * 0.05;
 
-            // Determine which phase we are in and interpolate
+            const sectionProgress = currentProgress * numSections;
+            const currentIndex = Math.floor(sectionProgress);
+            const localProgress = sectionProgress - currentIndex;
+
             let isPulsating = false;
 
-            if (currentProgress < 0.25) {
-                // Phase 0 to 1
-                const localProgress = currentProgress / 0.25;
-                lerpCamera(cameraViews[0], cameraViews[1], localProgress);
-                setExplosion(0);
-            } 
-            else if (currentProgress >= 0.25 && currentProgress < 0.5) {
-                // Phase 1 to 2
-                const localProgress = (currentProgress - 0.25) / 0.25;
-                lerpCamera(cameraViews[1], cameraViews[2], localProgress);
-                setExplosion(0);
-            }
-            else if (currentProgress >= 0.5 && currentProgress < 0.75) {
-                // Phase 2 to 3
-                const localProgress = (currentProgress - 0.5) / 0.25;
-                lerpCamera(cameraViews[2], cameraViews[3], localProgress);
+            if (currentIndex < numSections - 1) {
+                // Interpolate between current phase and next phase
+                lerpCamera(cameraViews[currentIndex], cameraViews[currentIndex + 1], localProgress);
                 
-                // Smoothly transition into explosion
-                setExplosion(localProgress * 0.5); // Explode halfway as we pull back
-            }
-            else {
-                // Phase 3 (End): Pulsating Exploded View
-                lerpCamera(cameraViews[3], cameraViews[3], 1); // Lock camera
+                if(currentIndex === numSections - 2) {
+                    // Transitioning into the exploded view
+                    setExplosion(localProgress * 0.5); 
+                } else {
+                    setExplosion(0);
+                }
+            } else {
+                // Final Phase (Explosion)
+                lerpCamera(cameraViews[6], cameraViews[6], 1);
                 isPulsating = true;
             }
 
-            // Execute Pulsation if active
             if (isPulsating) {
-                // Math.sin oscillates between -1 and 1. We want 0 to 1.
-                // (Math.sin(time) + 1) / 2 creates a smooth 0 to 1 breath
                 const pulse = (Math.sin(time * 2.0) + 1) / 2;
-                // Scale the pulse down so it doesn't fly off the screen entirely
                 setExplosion(pulse * 0.6); 
             }
 
