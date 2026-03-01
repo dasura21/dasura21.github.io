@@ -76,12 +76,24 @@
             transition: transform 0.4s ease, border-color 0.4s ease;
         }
 
+        /* Blueprint styling for CAD section */
+        .blueprint-card {
+            background-color: #0a192f;
+            background-image: linear-gradient(rgba(59, 130, 246, 0.15) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59, 130, 246, 0.15) 1px, transparent 1px);
+            background-size: 20px 20px;
+            border: 1px solid #3b82f6;
+            border-radius: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
         /* Text Gradients */
         .text-gradient {
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-image: linear-gradient(180deg, #fff, #888);
+            background-image: linear-gradient(180deg, #fff, #666);
         }
         
         .text-gradient-blue {
@@ -164,10 +176,10 @@
             
             <!-- Phase 0: Hero -->
             <div class="section items-center text-center">
-                <div class="mt-auto mb-32 max-w-4xl px-4 pointer-events-auto">
+                <div class="mt-auto mb-32 max-w-5xl px-4 pointer-events-auto">
                     <p class="text-[#2997ff] text-xs font-bold tracking-[0.2em] mb-4 uppercase">UIC Mechanical Engineering '28</p>
-                    <h1 class="text-5xl md:text-8xl font-extrabold tracking-tight text-gradient mb-6 leading-tight">
-                        Pro. Beyond.
+                    <h1 class="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-gradient mb-6 leading-tight">
+                        Engineering For Tomorrow.
                     </h1>
                     <p class="text-xl md:text-2xl text-gray-400 font-light max-w-2xl mx-auto mb-8">
                         Autonomous Payload Retrieval & Delivery Drone.
@@ -186,9 +198,6 @@
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">
                         Engineered a custom, lightweight autonomous drone frame applying rigorous First Principles analysis to ensure strict compliance with C-UASC weight and volumetric constraints.
                     </p>
-                    <a href="./DavidSura2026resume.pdf" download="DavidSura2026resume.pdf" class="inline-block bg-white/10 hover:bg-white/20 text-white font-mono text-xs px-4 py-2 rounded-full transition-colors">
-                        Download Tech Specs (Resume)
-                    </a>
                 </div>
             </div>
 
@@ -261,11 +270,90 @@
                 </div>
             </div>
 
-            <!-- Footer for Projects -->
-            <div class="bg-[#050505] relative z-20 py-16 pointer-events-auto border-t border-gray-900 text-center">
-                <p class="text-gray-500 text-sm">© 2026 David Sura. Engineering Projects Portfolio.</p>
-                <div class="mt-4">
-                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-[#2997ff] text-xs uppercase tracking-widest font-mono hover:text-white transition-colors">↑ Back to Top</button>
+            <!-- Phase 7: Engineering Gallery & Footer -->
+            <div class="min-h-screen bg-[#050505]/90 relative z-20 py-32 pointer-events-auto backdrop-blur-md border-t border-gray-900">
+                <div class="max-w-6xl mx-auto px-8">
+                    
+                    <div class="text-center mb-20">
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-4">Engineering Gallery.</h2>
+                        <p class="text-xl text-gray-500 font-light">Precision from First Principles.</p>
+                    </div>
+
+                    <!-- CAD Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
+                        <div class="blueprint-card p-8 group hover:scale-[1.02] transition-transform cursor-pointer">
+                            <div class="h-40 flex items-center justify-center border-b border-[#3b82f6]/30 mb-6">
+                                <div class="w-16 h-16 border-[3px] border-[#2997ff] rounded-full relative animate-[spin_10s_linear_infinite]">
+                                    <div class="absolute w-20 h-[2px] bg-[#2997ff] top-8 -left-2"></div>
+                                    <div class="absolute w-[2px] h-20 bg-[#2997ff] left-8 -top-2"></div>
+                                </div>
+                            </div>
+                            <h4 class="text-lg text-white font-semibold mb-2">Sensor Housing DFM</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed">Geometric Dimensioning and Tolerancing (GD&T) applied to protect the Raspberry Pi HQ Camera and optics.</p>
+                        </div>
+
+                        <div class="blueprint-card p-8 group hover:scale-[1.02] transition-transform cursor-pointer">
+                            <div class="h-40 flex items-center justify-center border-b border-[#3b82f6]/30 mb-6">
+                                <div class="w-24 h-12 border-[3px] border-[#2997ff] rounded-xl relative">
+                                    <div class="absolute w-full h-[2px] bg-[#2997ff] top-5"></div>
+                                </div>
+                            </div>
+                            <h4 class="text-lg text-white font-semibold mb-2">Carbon Fiber Integration</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed">Structural analysis on the main chassis to navigate complex mechanical constraints and optimize weight.</p>
+                        </div>
+
+                        <div class="blueprint-card p-8 group hover:scale-[1.02] transition-transform cursor-pointer">
+                            <div class="h-40 flex items-center justify-center border-b border-[#3b82f6]/30 mb-6">
+                                <div class="w-12 h-20 border-[3px] border-[#2997ff] relative">
+                                    <div class="absolute -left-4 top-4 w-20 h-[2px] bg-[#2997ff] rotate-45"></div>
+                                    <div class="absolute -left-4 bottom-4 w-20 h-[2px] bg-[#2997ff] -rotate-45"></div>
+                                </div>
+                            </div>
+                            <h4 class="text-lg text-white font-semibold mb-2">First Principles</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed">Thermodynamics and Statics applied to ensure system survivability in diverse operational envelopes.</p>
+                        </div>
+                    </div>
+
+                    <!-- Contact & Info -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 border-t border-gray-800 pt-16">
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-6">David Sura</h3>
+                            <p class="text-gray-400 font-light mb-6">
+                                Mechanical engineering candidate specializing in advanced structural design, systems integration, and rapid prototyping.
+                            </p>
+                            <!-- Download Resume Button -->
+                            <a href="./DavidSura2026resume.pdf" download="DavidSura2026resume.pdf" class="inline-block bg-[#2997ff] text-white font-semibold px-6 py-3 rounded-full hover:bg-blue-600 transition-colors text-sm">
+                                Download Resume (.PDF)
+                            </a>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-8 text-sm">
+                            <div>
+                                <h4 class="text-white font-semibold mb-4">Technical Skills</h4>
+                                <ul class="text-gray-500 space-y-2">
+                                    <li>SolidWorks, AutoCAD</li>
+                                    <li>DFM & GD&T</li>
+                                    <li>First Principles Analysis</li>
+                                    <li>MATLAB</li>
+                                    <li>Java, C/C++ (Arduino)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-4">Contact</h4>
+                                <ul class="text-gray-500 space-y-2">
+                                    <li>Chicago, IL</li>
+                                    <li><a href="mailto:dasura21@outlook.com" class="hover:text-white transition-colors">dasura21@outlook.com</a></li>
+                                    <li>773-916-0777</li>
+                                    <li>davidsura.com</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center mt-20 pb-8">
+                        <p class="text-xs text-gray-600 mb-4">© 2026 David Sura. ASME Member. GPA: 4.0/4.0.</p>
+                        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-[#2997ff] text-xs uppercase tracking-widest font-mono hover:text-white transition-colors">↑ Back to Top</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -282,13 +370,25 @@
                 
                 <!-- Left Column: Picture & Contact -->
                 <div class="md:col-span-1">
-                    <!-- Profile Picture Placeholder -->
+                    
+                    <!-- 
+                    ===================================================================
+                    PROFILE PICTURE UPLOAD INSTRUCTIONS:
+                    1. Save your photo as exactly "profile.jpg".
+                    2. Upload "profile.jpg" to your GitHub repository in the exact same 
+                       folder as this index.html file.
+                    3. The code below will automatically display it!
+                    =================================================================== 
+                    -->
                     <div class="w-full aspect-[4/5] rounded-2xl border border-gray-800 bg-gradient-to-b from-gray-900 to-black overflow-hidden flex flex-col items-center justify-center mb-8 relative group">
-                        <!-- Instructions for user: Add an <img> tag here and point src to your photo -->
-                        <div class="text-center p-6 opacity-50 group-hover:opacity-100 transition-opacity">
+                        <!-- This line displays your image -->
+                        <img src="./profile.jpg" alt="David Sura" class="w-full h-full object-cover z-10 relative fallback-hide" onerror="this.style.display='none'">
+                        
+                        <!-- This is the placeholder text if the image isn't found -->
+                        <div class="text-center p-6 absolute inset-0 flex flex-col items-center justify-center z-0">
                             <span class="text-4xl mb-4 block">📸</span>
-                            <p class="text-xs text-gray-400 uppercase tracking-widest font-mono">Profile Image Space</p>
-                            <p class="text-[10px] text-gray-600 mt-2">(Upload your photo to GitHub and add an &lt;img&gt; tag here)</p>
+                            <p class="text-xs text-gray-400 uppercase tracking-widest font-mono">Profile Image</p>
+                            <p class="text-[10px] text-gray-600 mt-2 text-center">(Ensure profile.jpg is uploaded to GitHub)</p>
                         </div>
                     </div>
 
@@ -303,6 +403,7 @@
                         </ul>
 
                         <div class="mt-8 border-t border-gray-800 pt-6">
+                            <!-- Download Resume Button -->
                             <a href="./DavidSura2026resume.pdf" download="DavidSura2026resume.pdf" class="block w-full text-center bg-white text-black font-semibold px-4 py-3 rounded-xl hover:bg-gray-200 transition-colors text-sm">
                                 Download PDF Resume
                             </a>
@@ -383,25 +484,21 @@
     <!-- UI Tab Logic -->
     <script>
         function switchTab(tabName) {
-            // Update Tab Styling
             document.getElementById('tab-projects').classList.remove('active');
             document.getElementById('tab-about').classList.remove('active');
             document.getElementById('tab-' + tabName).classList.add('active');
 
-            // Switch Views
             if(tabName === 'projects') {
                 document.getElementById('view-projects').classList.remove('hidden');
                 document.getElementById('view-projects').classList.add('block');
                 document.getElementById('view-about').classList.add('hidden');
                 document.getElementById('view-about').classList.remove('block');
-                // Re-enable canvas scrolling logic
                 document.getElementById('canvas-container').style.display = 'block';
             } else {
                 document.getElementById('view-projects').classList.add('hidden');
                 document.getElementById('view-projects').classList.remove('block');
                 document.getElementById('view-about').classList.remove('hidden');
                 document.getElementById('view-about').classList.add('block');
-                // Hide canvas to save resources and prevent overlap issues
                 document.getElementById('canvas-container').style.display = 'none';
                 window.scrollTo(0, 0);
             }
@@ -419,8 +516,8 @@
         // ==========================================
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
-        scene.background = new THREE.Color(0x000000);
-        scene.fog = new THREE.FogExp2(0x000000, 0.03);
+        scene.background = new THREE.Color(0x020205);
+        scene.fog = new THREE.FogExp2(0x020205, 0.02);
 
         const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
         
@@ -436,27 +533,76 @@
         const dirLight = new THREE.DirectionalLight(0xffffff, 2.5);
         dirLight.position.set(5, 10, 7);
         scene.add(dirLight);
-        const blueLight = new THREE.PointLight(0x2997ff, 3, 20);
+        const blueLight = new THREE.PointLight(0x2997ff, 3, 30);
         blueLight.position.set(-5, -2, -5);
         scene.add(blueLight);
 
-        // Space Background (Starfield & Planet)
+        // ==========================================
+        // 2. DEEP SPACE ENVIRONMENT
+        // ==========================================
+        
+        // Starfield
         const starsGeo = new THREE.BufferGeometry();
-        const posArray = new Float32Array(2000 * 3);
-        for(let i = 0; i < 6000; i++) posArray[i] = (Math.random() - 0.5) * 200;
+        const posArray = new Float32Array(3000 * 3);
+        for(let i = 0; i < 9000; i++) posArray[i] = (Math.random() - 0.5) * 300;
         starsGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
         const starMesh = new THREE.Points(starsGeo, new THREE.PointsMaterial({size: 0.1, color: 0xffffff, transparent: true, opacity: 0.8}));
         scene.add(starMesh);
 
-        const planet = new THREE.Mesh(
-            new THREE.SphereGeometry(40, 64, 64), 
-            new THREE.MeshStandardMaterial({color: 0x050510, emissive: 0x020211, roughness: 0.9, metalness: 0.1})
+        // Purple Nebula Dust (Point Cloud)
+        const nebulaGeo = new THREE.BufferGeometry();
+        const nebPosArray = new Float32Array(1500 * 3);
+        for(let i = 0; i < 4500; i++) nebPosArray[i] = (Math.random() - 0.5) * 150;
+        nebulaGeo.setAttribute('position', new THREE.BufferAttribute(nebPosArray, 3));
+        const nebulaMat = new THREE.PointsMaterial({
+            size: 6, 
+            color: 0x4B0082, 
+            transparent: true, 
+            opacity: 0.15, 
+            blending: THREE.AdditiveBlending,
+            depthWrite: false
+        });
+        const nebula = new THREE.Points(nebulaGeo, nebulaMat);
+        scene.add(nebula);
+
+        // Distant Ringed Planet
+        const planetGroup = new THREE.Group();
+        planetGroup.position.set(-60, 20, -120);
+        
+        const planetBody = new THREE.Mesh(
+            new THREE.SphereGeometry(15, 32, 32), 
+            new THREE.MeshStandardMaterial({color: 0x111122, emissive: 0x050510, roughness: 0.9})
         );
-        planet.position.set(-50, -20, -100);
-        scene.add(planet);
+        planetGroup.add(planetBody);
+
+        const planetRing = new THREE.Mesh(
+            new THREE.TorusGeometry(25, 1.5, 2, 64),
+            new THREE.MeshStandardMaterial({color: 0x2997ff, roughness: 0.5, transparent: true, opacity: 0.4})
+        );
+        planetRing.rotation.x = Math.PI / 1.8;
+        planetGroup.add(planetRing);
+        scene.add(planetGroup);
+
+        // Asteroid Belt (Instanced Mesh for performance)
+        const rockGeo = new THREE.DodecahedronGeometry(0.5, 0);
+        const rockMat = new THREE.MeshStandardMaterial({color: 0x444444, roughness: 0.9, metalness: 0.2});
+        const asteroidBelt = new THREE.InstancedMesh(rockGeo, rockMat, 200);
+        const dummy = new THREE.Object3D();
+        
+        for(let i = 0; i < 200; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const radius = 25 + Math.random() * 10;
+            const yOffset = (Math.random() - 0.5) * 5;
+            dummy.position.set(Math.cos(angle) * radius, yOffset, Math.sin(angle) * radius);
+            dummy.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+            dummy.scale.setScalar(Math.random() * 0.8 + 0.2);
+            dummy.updateMatrix();
+            asteroidBelt.setMatrixAt(i, dummy.matrix);
+        }
+        scene.add(asteroidBelt);
 
         // ==========================================
-        // 2. GLTF & DRACO LOADER
+        // 3. GLTF & DRACO LOADER
         // ==========================================
         let droneModel = new THREE.Group();
         scene.add(droneModel);
@@ -515,14 +661,13 @@
         );
 
         // ==========================================
-        // 3. SCROLL & CINEMATIC CAMERA LOGIC
+        // 4. SCROLL & CINEMATIC CAMERA LOGIC
         // ==========================================
         let scrollY = 0;
         let currentProgress = 0;
         let clock = new THREE.Clock();
         
         window.addEventListener('scroll', () => { 
-            // Only track scroll if we are in the Projects view
             if(!document.getElementById('view-projects').classList.contains('hidden')) {
                 scrollY = window.scrollY; 
             }
@@ -561,33 +706,38 @@
             const time = clock.getElapsedTime();
             
             // Continuous Background Animations
-            droneModel.rotation.y = time * 0.2;
-            starMesh.rotation.y = time * 0.02;
+            droneModel.rotation.y = time * 0.2; // Drone spins seamlessly
+            starMesh.rotation.y = time * 0.01;  // Stars drift
+            nebula.rotation.z = time * 0.02;    // Nebula swirls
+            asteroidBelt.rotation.y = time * 0.05; // Asteroids orbit
+            asteroidBelt.rotation.z = Math.sin(time * 0.1) * 0.1;
 
-            // Scroll Math (7 sections total)
-            const numSections = 7;
-            const scrollableHeight = window.innerHeight * numSections; 
+            // Scroll Math
+            const numTransitions = 6; // 7 sections = 6 transitions
+            const scrollableHeight = window.innerHeight * numTransitions; 
+            
+            // Limit targetProgress to 1 so camera locks when scrolling to gallery
             const targetProgress = Math.min(1, Math.max(0, scrollY / scrollableHeight));
             currentProgress += (targetProgress - currentProgress) * 0.05;
 
-            const sectionProgress = currentProgress * numSections;
-            const currentIndex = Math.floor(sectionProgress);
+            const sectionProgress = currentProgress * numTransitions;
+            const currentIndex = Math.min(Math.floor(sectionProgress), 5); // Max index is 5
             const localProgress = sectionProgress - currentIndex;
 
             let isPulsating = false;
 
-            if (currentIndex < numSections - 1) {
+            if (currentProgress < 1) {
                 // Interpolate between current phase and next phase
                 lerpCamera(cameraViews[currentIndex], cameraViews[currentIndex + 1], localProgress);
                 
-                if(currentIndex === numSections - 2) {
+                if(currentIndex === 5) {
                     // Transitioning into the exploded view
                     setExplosion(localProgress * 0.5); 
                 } else {
                     setExplosion(0);
                 }
             } else {
-                // Final Phase (Explosion)
+                // Final Phase: Locked camera, pulsating explosion
                 lerpCamera(cameraViews[6], cameraViews[6], 1);
                 isPulsating = true;
             }
