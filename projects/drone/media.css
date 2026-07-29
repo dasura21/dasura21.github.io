@@ -1,0 +1,52 @@
+.field-media-grid {
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  gap: 20px;
+  align-items: start;
+}
+
+.field-media-card {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(115, 197, 255, .28);
+  border-radius: 24px;
+  background: rgba(3, 17, 31, .76);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, .24);
+}
+
+.field-media-card img,
+.field-media-card video {
+  display: block;
+  width: 100%;
+  background: #020b14;
+}
+
+.field-media-card img {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.field-media-card video {
+  aspect-ratio: 4 / 3;
+  object-fit: contain;
+}
+
+.field-media-card figcaption {
+  padding: 15px 17px 17px;
+  color: #aebfd0;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.field-media-card figcaption strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #e5f3ff;
+  font-size: 14px;
+}
+
+@media (max-width: 800px) {
+  .field-media-grid {
+    grid-template-columns: 1fr;
+  }
+}

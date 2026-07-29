@@ -1,0 +1,15 @@
+import * as THREE from 'three';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+const box=document.querySelector('#drone-viewer'), status=document.querySelector('#viewer-status');
+const tags={structure:['plate','rod','armholder','holder','clamp','middle','bottom','arm'],propulsion:['motor','prop','esc'],avionics:['pixhawk','cube','rfd','here','jetson','battery','antenna','wire'],landing:['landing','leg','payload','release']};
+const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(42,1,.1,100), renderer=new THREE.WebGLRenderer({antialias:true,alpha:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.15;box.prepend(renderer.domElement);camera.position.set(8,4.5,11);
+scene.add(new THREE.HemisphereLight(0xdceeff,0x06121e,1.8));const key=new THREE.DirectionalLight(0xffffff,3);key.position.set(5,8,7);scene.add(key);const rim=new THREE.PointLight(0x2997ff,14,28);rim.position.set(-7,1,-5);scene.add(rim);
+const controls=new OrbitControls(camera,renderer.domElement);controls.enableDamping=true;controls.enablePan=false;controls.minDistance=8;controls.maxDistance=18;controls.autoRotate=!matchMedia('(prefers-reduced-motion: reduce)').matches;controls.autoRotateSpeed=1.3;
+function resize(){const w=Math.max(box.clientWidth,1),h=Math.max(box.clientHeight,1);renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix()}new ResizeObserver(resize).observe(box);resize();let model;
+function showFilter(filter){model?.traverse(o=>{if(!o.isMesh)return;const name=o.name.toLowerCase();o.visible=filter==='all'||(tags[filter]||[]).some(tag=>name.includes(tag))});document.querySelectorAll('[data-filter]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.filter===filter)))}
+document.querySelectorAll('[data-filter]').forEach(b=>b.addEventListener('click',()=>showFilter(b.dataset.filter)));
+const draco=new DRACOLoader();draco.setDecoderPath('https://www.gstatic.com/draco/versioned/decoders/1.5.6/');const loader=new GLTFLoader();loader.setDRACOLoader(draco);loader.load('../../FullDroneAssemblySura.glb',g=>{model=g.scene;const bounds=new THREE.Box3().setFromObject(model),size=bounds.getSize(new THREE.Vector3()),center=bounds.getCenter(new THREE.Vector3()),scale=6.8/Math.max(size.x,size.y,size.z);model.scale.setScalar(scale);model.position.set(-center.x*scale,-center.y*scale,-center.z*scale);model.traverse(o=>{if(o.isMesh&&o.material){o.material.roughness=.34;o.material.metalness=.66}});scene.add(model);status.hidden=true},x=>{if(x.total)status.textContent=`LOADING FULL FLIGHT ASSEMBLY ${Math.round(x.loaded/x.total*100)}%`},()=>status.textContent='3D ASSEMBLY UNAVAILABLE · CAD FILE REMAINS LOCAL');
+let active=true;new IntersectionObserver(([e])=>active=e.isIntersecting,{threshold:.02}).observe(box);function frame(){requestAnimationFrame(frame);if(active){controls.update();renderer.render(scene,camera)}}frame();

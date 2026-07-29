@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Autonomous payload drone: competition requirements, preliminary sizing, CAD evidence, and public-safe integration record.">
+<title>Autonomous Payload Drone — David Sura</title>
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.154.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.154.0/examples/jsm/"}}</script><link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="../case-study.css">
+<link rel="stylesheet" href="media.css">
+</head>
+<body class="blueprint">
+<a class="skip" href="#main">Skip to content</a><header class="nav"><a class="brand" href="../../index.html">David Sura</a><nav><a href="../../index.html#projects">All work</a><a class="pill" href="../../DavidSuraEngResume2026.pdf" target="_blank" rel="noopener">View résumé ↗</a></nav></header><main id="main"><section class="hero"><div class="wrap">
+<div class="kicker">01 / Flight hardware</div>
+<h1>Autonomous<br>Payload Drone.</h1>
+<p class="lead">A design-review record for a payload-retrieval UAV: mission constraints, preliminary calculator sizing, public-safe integration evidence, and a full CAD assembly.</p>
+<div class="meta">
+<span class="badge">CAD / preliminary sizing</span><span class="badge">Competition-derived requirements</span>
+</div>
+</div></section><nav class="local-nav" aria-label="Drone case study sections"><div class="wrap">
+<a href="#mission">Mission</a><a href="#field-media">Field media</a><a href="#cad">CAD viewer</a><a href="#sizing">Sizing snapshot</a><a href="#trades">Trade studies</a><a href="#integration">Integration</a>
+</div></nav><section class="section" id="mission"><div class="wrap">
+<header class="section-head"><div class="label">Mission envelope</div>
+<h2>Recovery task drives the system.</h2>
+<p>The competition required three 15-minute slots: 5 minutes for setup and 10 minutes of flight. The package-recovery mission is to fly to a bucket, pick it up, and return it. The bucket is a 1–2 kg requirement and may not be dropped from more than 6 ft.</p></header><div class="grid">
+<article class="card"><div class="metric">3 × 15 min<small>Requirement / competition slot structure</small>
+</div>
+<p>Each slot permits 5 minutes setup and 10 minutes flight.</p></article><article class="card"><div class="metric">1–2 kg<small>Requirement / bucket mass</small>
+</div>
+<p>Payload must be retrieved and returned, with controlled release geometry.</p></article><article class="card"><div class="metric">+25%<small>Requirement / applicable autonomy bonus</small>
+</div>
+<p>Autonomous completion earns a bonus for applicable missions.</p></article>
+</div>
+<div class="notice" style="margin-top:20px">Environmental reference: Mojave density altitude reached 6,500 ft and gusts reached 14 kt in 2024. Judges value process, analysis, manufacturability, structural/aerodynamic innovation, autonomy, and payload-system design.</div>
+</div></section><section class="section" id="field-media"><div class="wrap">
+<header class="section-head"><div class="label">Team &amp; field evidence</div>
+<h2>The aircraft beyond the CAD viewport.</h2>
+<p>The team photo and safety-demonstration recording connect the digital assembly to the people, ground-control equipment, and supervised outdoor operation around the physical platform.</p></header><div class="field-media-grid">
+<figure class="field-media-card"><img src="../../media/drone/team-build-photo.jpg" alt="Student drone team standing with the aircraft and Chicago skyline behind them" loading="lazy" width="2000" height="1125"><figcaption><strong>Student design team and flight platform</strong>Outdoor team photograph in Chicago. The aircraft and ground-control transmitter are shown with the students who supported the project.</figcaption></figure><figure class="field-media-card"><video controls playsinline preload="metadata" poster="../../media/drone/safety-demo-poster.jpg"><source src="../../media/drone/safety-demo.mp4" type="video/mp4">Your browser does not support embedded video. <a href="../../media/drone/safety-demo.mp4">Open the safety demonstration.</a></video><figcaption><strong>47-second outdoor safety demonstration</strong>Physical flight footage with the ground-control interface and telemetry shown alongside the aircraft. This is field evidence, not a payload-recovery performance claim.</figcaption></figure>
+</div>
+</div></section><section class="section" id="cad"><div class="wrap">
+<header class="section-head"><div class="label">Interactive CAD evidence</div>
+<h2>Full assembly, inspectable by subsystem.</h2>
+<p>Drag to orbit, scroll/pinch to zoom. The source assembly contains 996 nodes and 932 meshes. Filters expose the named CAD evidence by its design-review category; unmatched inherited assembly items remain visible in the full view only.</p></header><div class="viewer">
+<div id="drone-viewer"><div class="viewer-status" id="viewer-status">LOADING FULL FLIGHT ASSEMBLY</div></div>
+<div class="viewer-controls" role="group" aria-label="CAD assembly filters">
+<button data-filter="all" aria-pressed="true">FULL ASSEMBLY</button><button data-filter="structure" aria-pressed="false">STRUCTURE</button><button data-filter="propulsion" aria-pressed="false">PROPULSION</button><button data-filter="avionics" aria-pressed="false">AVIONICS</button><button data-filter="landing" aria-pressed="false">LANDING / PAYLOAD</button>
+</div>
+<div class="viewer-note">SELF-ROTATING WHEN NOT DRAGGED · FILTERS ARE NAME-BASED REVIEW AIDS · CAD EVIDENCE, NOT TEST VALIDATION</div>
+</div>
+<div class="grid" style="margin-top:18px">
+<article class="card"><div class="label">Carbon structure</div>
+<h3>Plates, rods &amp; arm holders</h3>
+<p><b>Function:</b> carry distributed airframe loads and isolate subsystems. <b>Intent:</b> 12 × 12 × 1/8 carbon-fiber plate, rod, and clamp architecture. <b>Interface / risk:</b> clamp preload and plate-hole stress concentration need verification.</p></article><article class="card"><div class="label">Propulsion</div>
+<h3>Motor clamps &amp; propellers</h3>
+<p><b>Function:</b> transfer thrust into the frame. <b>Intent:</b> top/bottom motor clamps locate each powertrain. <b>Interface / risk:</b> clamp alignment, fastener retention, and ESC thermal routing remain critical.</p></article><article class="card"><div class="label">Landing &amp; payload</div>
+<h3>Legs, release &amp; protected volume</h3>
+<p><b>Function:</b> protect electronics while accommodating recovery hardware. <b>Intent:</b> modular landing-leg elements and quick-release integration. <b>Interface / risk:</b> ground clearance and payload-release clearance must be tested.</p></article>
+</div>
+</div></section><section class="section" id="sizing"><div class="wrap">
+<header class="section-head"><div class="label">Preliminary eCalc sizing snapshot</div>
+<h2>Useful estimate, not a flight result.</h2>
+<p>Every value in this section is an <b>estimated calculator output</b> with approximately <b>±15% calculator accuracy</b>. The images and model do not constitute flight testing.</p></header><div class="grid">
+<article class="card"><div class="metric">3,944 g<small>Estimated / all-up mass snapshot</small>
+</div>
+<p>6S3P battery: 299.7 Wh, 13.5 Ah, 1,764 g. Added payload in this snapshot: 3,167 g.</p></article><article class="card"><div class="metric">2.1:1<small>Estimated / thrust-to-weight</small>
+</div>
+<p>EMAX ECO II 3115-500 with 11 × 7.5 three-blade propeller; 81.1% estimated hover efficiency.</p></article><article class="card"><div class="metric">17.6 min<small>Estimated / hover endurance</small>
+</div>
+<p>14.4 min mixed, 6.1 min minimum; 4.95 mi estimated range. Hover / maximum current: 39.04 A / 113.11 A.</p></article>
+</div>
+<div class="two-col" style="margin-top:20px">
+<figure class="figure"><img src="../../media/drone/ecalc-sizing-summary.png" alt="eCalc preliminary sizing summary"><figcaption>Calculator output — estimated with ±15% calculator accuracy. Maximum estimated motor temperature: 68 °C.</figcaption></figure><figure class="figure"><img src="../../media/drone/ecalc-motor-characteristic.png" alt="eCalc motor characteristic plot"><figcaption>Motor characteristic — estimated calculator output, not flight test.</figcaption></figure>
+</div>
+<figure class="figure" style="margin-top:20px"><img src="../../media/drone/ecalc-range-estimator.png" alt="eCalc range estimator"><figcaption>Estimated range evidence — calculator output with ±15% calculator accuracy.</figcaption></figure>
+</div></section><section class="section" id="trades"><div class="wrap">
+<header class="section-head"><div class="label">Sanitized trade studies</div>
+<h2>Selections made legible.</h2>
+<p>Reconstructed public-safe comparison results. Scores are decision-study scores, not performance measurements.</p></header><table class="data-table">
+<thead><tr>
+<th>Study</th>
+<th>Leading comparison</th>
+<th>Score</th>
+<th>Criteria / note</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>Motor</td>
+<td>EMAX ECO II 3115 / T-Motor VELOX V3115</td>
+<td>48 / 44</td>
+<td>Cost, weight, KV, maximum power</td>
+</tr>
+<tr>
+<td>Propeller</td>
+<td>HQProp MacroQuad 11 × 7.5 × 3 / folding alternatives</td>
+<td>58 / 54</td>
+<td>Cost, weight, thrust-to-weight, specific thrust. Snapshot: 2.1 T/W and 4.64 g/W <em>(estimated)</em>.</td>
+</tr>
+<tr>
+<td>60 A ESC</td>
+<td>Hobbywing 60A / Flycolor X-Cross 60A</td>
+<td>67 / 63</td>
+<td>Cost, interfaces, implementation/documentation, weight, size</td>
+</tr>
+<tr>
+<td>Jetson battery</td>
+<td>Samsung 18650 / next LiPo alternative</td>
+<td>88 / 64</td>
+<td>Cost, volume, Wh, capacity, weight, C rating</td>
+</tr>
+<tr>
+<td>Main battery</td>
+<td>Li-Ion #2 high score / “Selected” marker on Li-Ion #1</td>
+<td>76 / —</td>
+<td>Decision requiring reconciliation; no winner is named.</td>
+</tr>
+</tbody>
+</table>
+</div></section><section class="section" id="integration"><div class="wrap">
+<header class="section-head"><div class="label">Public-safe integration record</div>
+<h2>System summary, without procurement exposure.</h2></header><div class="grid">
+<article class="card"><h3>Powertrain</h3>
+<p>6 EMAX ECO II 3115 motors; 6 Hobbywing XRotor H60A ESCs; HQProp MacroQuad 11 × 7.5 × 3 props.</p></article><article class="card"><h3>Structure &amp; payload</h3>
+<p>12 × 12 × 1/8 carbon-fiber plate; battery mounting, power monitoring, quick-release hardware, wiring and antennas.</p></article><article class="card"><h3>Controls &amp; compute</h3>
+<p>Cube Orange flight-control / RFD / Here4 package and Jetson Orin Nano. This is a component integration summary only; no prices, vendor data, links, or purchase records are published.</p></article>
+</div>
+</div></section></main><footer class="footer"><div class="wrap">
+<div class="pager">
+<a href="../web-business/index.html"><span>Previous / 04</span><strong>Website Development Business</strong></a><a href="../dasurago/index.html"><span>Next / 02</span><strong>DasuraGo</strong></a>
+</div>
+<p class="prose"><a href="../../index.html#projects">← Back to all work</a></p>
+</div></footer><script>if(location.protocol==='file:'){const status=document.getElementById('viewer-status');if(status)status.innerHTML='INTERACTIVE CAD REQUIRES THE SERVED PREVIEW<br><br><a href="http://127.0.0.1:4173/projects/drone/index.html#cad">OPEN LOCAL HTTP PREVIEW &rarr;</a>';}</script><script type="module" src="viewer.js"></script>
+</body>
+</html>
