@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Spring-powered autonomous sled: UIC ME 250 team prototype development.">
+  <title>Spring-Powered Autonomous Sled — David Sura</title>
+  <link rel="stylesheet" href="../case-study.css">
+  <link rel="stylesheet" href="workshop.css">
+</head>
+<body class="warm">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="nav">
+    <a class="brand" href="../../index.html">David Sura</a>
+    <nav>
+      <a href="../../index.html#projects">All work</a>
+      <a class="pill" href="../../DavidSuraEngResume2026.pdf" target="_blank" rel="noopener">View résumé ↗</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <div class="kicker">03 / UIC ME 250 · Fall 2025</div>
+        <h1>Spring-Powered<br>Autonomous Sled.</h1>
+        <p class="lead">A four-person team project for a no-wheel, spring-only sled designed to stop autonomously and signal completion. The work progressed from functional decomposition and CAD into workshop fabrication, breadboard electronics, and actuator integration; quantitative performance validation remains.</p>
+        <div class="meta">
+          <span class="badge">Team / we</span>
+          <span class="badge">Prototype development</span>
+          <span class="badge">Performance testing remains</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="local-nav" aria-label="Sled case study sections">
+      <div class="wrap">
+        <a href="#requirements">Requirements</a>
+        <a href="#funnel">Concept funnel</a>
+        <a href="#architecture">Concept 9</a>
+        <a href="#cad">CAD evolution</a>
+        <a href="#prototype">Workshop build</a>
+      </div>
+    </nav>
+
+    <section class="section" id="requirements">
+      <div class="wrap">
+        <header class="section-head">
+          <div class="label">Design requirements</div>
+          <h2>Spring energy, grounded track, autonomous finish.</h2>
+        </header>
+        <div class="grid">
+          <article class="card"><div class="metric">≥100 g<small>Requirement / free-standing payload</small></div><p>Team sled must carry at least 100 g while remaining free-standing.</p></article>
+          <article class="card"><div class="metric">No wheels<small>Requirement / motion constraint</small></div><p>One or more permitted coil/torsion spring elements provide spring-only propulsion.</p></article>
+          <article class="card"><div class="metric">Autonomous stop<small>Requirement / completion behavior</small></div><p>Operate on the designated grounded track, stop without human intervention, then provide visual/audio completion signal.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="funnel">
+      <div class="wrap">
+        <header class="section-head">
+          <div class="label">Morphological selection</div>
+          <h2>From combinations to a practical concept.</h2>
+          <p>The team used a functional decomposition and Best-of-Class comparison rather than jumping directly to a single mechanism.</p>
+        </header>
+        <figure class="figure">
+          <img src="../../media/sled-function-means-tree.png" alt="Function-means tree for the autonomous sled">
+          <figcaption>Team design evidence: function-means tree used to structure the concept search.</figcaption>
+        </figure>
+        <div class="timeline" style="margin-top:30px">
+          <article><h3>2,419,200 unconstrained combinations</h3><p>Initial morphological space.</p></article>
+          <article><h3>1,296 feasible → 20 practical → top 5</h3><p>Constraint and practicality filters narrowed the field.</p></article>
+          <article><h3>Concept 9</h3><p>Best-of-Class result: locking beat tension/friction on cost effectiveness, responsiveness, and reliability; ultrasonic sensing beat photoresistor/PIR on consistency/reliability; LED was the simplest stop indication.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="architecture">
+      <div class="wrap">
+        <header class="section-head">
+          <div class="label">Concept 9 control flow</div>
+          <h2>Sense, lock, signal.</h2>
+        </header>
+        <div class="equation">ULTRASONIC SENSOR → ARDUINO LOGIC → SERVO LOCK → LED</div>
+        <div class="two-col" style="margin-top:20px">
+          <figure class="figure">
+            <img src="../../media/sled-autonomous-lock-sketch.png" alt="Annotated spring-powered sled lock sketch">
+            <figcaption>Annotated team concept sketch: torsion spring, ultrasonic sensor, Arduino, servo, lock, and LED.</figcaption>
+          </figure>
+          <article class="card">
+            <h3>Intent</h3>
+            <p>The ultrasonic sensor informs Arduino logic; a servo actuates the lock; LED indicates completion. This is designed evidence for the intended autonomous stop sequence, not measured behavior.</p>
+            <h3>Why locking</h3>
+            <p>Best-of-Class scoring favored locking over tension/friction for cost effectiveness, responsiveness, and reliability.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="cad">
+      <div class="wrap">
+        <header class="section-head">
+          <div class="label">CAD evolution</div>
+          <h2>Balance and packaging became explicit.</h2>
+          <p>The CAD evolution added two torsion springs and two servos for balance, with electronics centralized in the base.</p>
+        </header>
+        <figure class="figure">
+          <img src="../../media/sled-autonomous-lock-cad.png" alt="CAD concept of autonomous spring-powered sled">
+          <figcaption>CAD evidence preceding the workshop build. Quantitative performance testing remains.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section workshop-section" id="prototype">
+      <div class="wrap">
+        <header class="section-head">
+          <div class="label">Workshop prototype</div>
+          <h2>From system architecture to a physical build.</h2>
+          <p>The workshop sequence documents material preparation, structural fabrication, breadboard electronics, servo-lock integration, and the team establishing a physical test scale. It demonstrates build maturity—not stopping accuracy or payload performance.</p>
+        </header>
+        <div class="workshop-gallery">
+          <figure class="workshop-shot wide"><img src="../../media/sled/workshop-sanding.jpg" alt="Preparing a wooden strip at a belt and disc sander" loading="lazy"><figcaption>01 / Material preparation at the belt and disc sander.</figcaption></figure>
+          <figure class="workshop-shot"><img src="../../media/sled/workshop-bandsaw.jpg" alt="Cutting plywood geometry on a band saw" loading="lazy"><figcaption>02 / Cutting the structural geometry.</figcaption></figure>
+          <figure class="workshop-shot"><img src="../../media/sled/workshop-layout.jpg" alt="Laying out plywood parts with a square" loading="lazy"><figcaption>03 / Laying out parts before fabrication.</figcaption></figure>
+          <figure class="workshop-shot"><img src="../../media/sled/workshop-marking.jpg" alt="Marked plywood bracket details beside a pencil" loading="lazy"><figcaption>04 / Translating dimensions into bracket details.</figcaption></figure>
+          <figure class="workshop-shot wide"><img src="../../media/sled/prototype-chassis.jpg" alt="Early wooden chassis with upright servo support structures" loading="lazy"><figcaption>05 / Early chassis and actuator-support structure.</figcaption></figure>
+          <figure class="workshop-shot"><img src="../../media/sled/prototype-electronics.jpg" alt="Arduino breadboard with ultrasonic sensor servo and buzzer" loading="lazy"><figcaption>06 / Breadboard proof for sensing, control, and signaling.</figcaption></figure>
+          <figure class="workshop-shot"><img src="../../media/sled/prototype-integration.jpg" alt="Servo lock and Arduino electronics being integrated with the wooden sled" loading="lazy"><figcaption>07 / Servo-lock integration on the prototype base.</figcaption></figure>
+          <figure class="workshop-shot wide"><img src="../../media/sled/workshop-measurement.jpg" alt="Team measuring the physical track beside the prototype electronics" loading="lazy"><figcaption>08 / Establishing track length and physical test scale.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="pager">
+        <a href="../dasurago/index.html"><span>Previous / 02</span><strong>DasuraGo</strong></a>
+        <a href="../web-business/index.html"><span>Next / 04</span><strong>Website Development Business</strong></a>
+      </div>
+      <p class="prose"><a href="../../index.html#projects">← Back to all work</a></p>
+    </div>
+  </footer>
+</body>
+</html>
