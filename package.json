@@ -1,0 +1,6 @@
+{
+  "name": "dasura-portfolio-security-assets",
+  "private": true,
+  "scripts": { "vendor": "node scripts/vendor-assets.mjs", "test": "node scripts/check-security.mjs" },
+  "devDependencies": { "three": "0.154.0" }
+}

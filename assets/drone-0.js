@@ -1,0 +1,1 @@
+if(location.protocol==='file:'){const status=document.getElementById('viewer-status');if(status)status.innerHTML='INTERACTIVE CAD REQUIRES THE SERVED PREVIEW<br><br><a href="http://127.0.0.1:4173/projects/drone/index.html#cad">OPEN LOCAL HTTP PREVIEW &rarr;</a>';}

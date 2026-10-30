@@ -1,3 +1,7 @@
 debug.log
 tmp/
 media/dasurago-four-stop-demo.webm
+
+node_modules/
+.env
+.env.*
